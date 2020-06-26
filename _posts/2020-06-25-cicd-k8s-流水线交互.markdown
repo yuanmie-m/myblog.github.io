@@ -1,0 +1,50 @@
+---
+layout:     post
+title:      "k8s-流水线交互"
+subtitle:   " \"CI/CD,从代码发布到k8s集群部署pod的过程\""
+date:       2020-06-25 02:03:00
+author:     "yuanmie"
+header-img: "img/post-bg-os-metro.jpg"
+catalog: true
+tags:
+    - k8s
+---
+
+> “k8s on2. ”
+
+
+
+程序员写好代码，是如何到由代码变成k8s的容器内应用的。
+
+全部过程是怎么样的，一定要清楚！必须掌握。
+
+# 过程
+ 一个比较典型的 DevOps 的流水线过程是：项目开始开发时，用 VS  Code 开发代码，然后把代码推送到 GitLab 里存储，通过 GitLab 的 hook 使 Jenkins 执行一些 CI 的过程，比如做一些单元测试，构建 Docker  image，再把这个 Docker  image 调用 helm 部署到开发环境或测试环境中。在测试环境里通过 Jenkins 触发一个集成测试的功能，完成后就可以把它部署到生产环境里，通过 Kubernetes addon 的方式，把 Prometheus、Grafana 等监控组件部署到集群里，就实现了一整套从 CI 到 CD 的监控过程。
+
+ ![avatar](https://static.geekbang.org/infoq/5c427b515869e.png?imageView2/0/w/800)
+
+（图片来源[地址](https://www.infoq.cn/article/LtsomODk*whKEevGUhUp)）
+
+每一步的细节都应该懂！每一个环节都是一门技术，加油吧！
+
+# vs code-->gitlab
+
+创建SSH KEY密钥，上传到gitlab的key里面即可互通。
+
+# gitlab-->jenkins
+
+也是通过密钥+gitlab的项目地址通信。
+
+# jenkins-->docker
+
+jenkins将代码打包成war包或者其他的。
+
+docker运行war包，docker reload > xx.war。然后打一个标签，推送到私有仓库，比如harbor私有 仓库。
+
+# docker-->k8s的pod
+
+k8s通过创建一个pod，dp.yaml里面配置具体的镜像，从harbor私有仓库中拉取，然后运行为一个pod。
+
+至此，代码到k8s中的pod完成。其中 涉及到的技术比较多，加油学！
+
+
