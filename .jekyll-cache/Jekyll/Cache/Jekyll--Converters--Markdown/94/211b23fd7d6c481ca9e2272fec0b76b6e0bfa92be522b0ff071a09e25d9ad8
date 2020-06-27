@@ -1,0 +1,33 @@
+I"�<h1 id="docker">docker</h1>
+
+<p><code class="language-plaintext highlighter-rouge">images</code>    List images                                   # 列出系统当前镜像</p>
+
+<p><code class="language-plaintext highlighter-rouge">ps</code>        List containers                               # 列出容器列表</p>
+
+<p><code class="language-plaintext highlighter-rouge">info</code>      Display system-wide information               # 显示系统相关信息</p>
+
+<p><code class="language-plaintext highlighter-rouge">inspect</code>   Return low-level information on a container   # 查看容器详细信息</p>
+
+<p><code class="language-plaintext highlighter-rouge">kill</code>      Kill a running container                      # kill 指定 docker 容器</p>
+
+<p><code class="language-plaintext highlighter-rouge">load</code>      Load an image from a tar archive              # 从一个 tar 包中加载一个镜像[对应 save]</p>
+
+<p><code class="language-plaintext highlighter-rouge">save</code>      Save an image to a tar archive                # 保存一个镜像为一个 tar 包[对应 load]</p>
+
+<p><code class="language-plaintext highlighter-rouge">login</code>     Register or Login to the docker registry server <br />
+              # 注册或者登陆一个 docker 源服务器</p>
+
+<p><code class="language-plaintext highlighter-rouge">tag</code>       Tag an image into a repository                # 给源中镜像打标签</p>
+
+<p><code class="language-plaintext highlighter-rouge">pull</code>      Pull an image or a repository from the docker registry server
+              # 从docker镜像源服务器拉取指定镜像或者库镜像</p>
+
+<p><code class="language-plaintext highlighter-rouge">push</code>      Push an image or a repository to the docker registry server
+              # 推送指定镜像或者库镜像至docker源服务器</p>
+
+<p><code class="language-plaintext highlighter-rouge">rm</code>        Remove one or more containers                 # 移除一个或者多个容器</p>
+
+<p><code class="language-plaintext highlighter-rouge">rmi</code>       Remove one or more images               <br />
+              # 移除一个或多个镜像[无容器使用该镜像才可删除，否则需删除相关容器才可继续或 -f 强制删除]</p>
+
+:ET

@@ -1,0 +1,189 @@
+I"�<blockquote>
+  <p>“start. ”</p>
+</blockquote>
+
+<p>环境：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@new-centos7 _posts]# <span class="nb">cat</span> /etc/redhat-release
+
+CentOS Linux release 7.5.1804 <span class="o">(</span>Core<span class="o">)</span>
+</code></pre></div></div>
+<h2 id="安装ruby">安装Ruby</h2>
+
+<p>安装方法有很多种。</p>
+
+<p>1.直接安装即可：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install </span>ruby <span class="nt">-y</span>
+
+rvm <span class="nb">install </span>2.7.0 <span class="nt">--disable-binary</span>
+</code></pre></div></div>
+
+<p>2.源码包安装，去<a href="https://www.ruby-lang.org/zh_cn/">官网</a>下载。</p>
+
+<p>然后解压，编译：./config &amp;&amp; make &amp;&amp; make install，默认安装在/usr/local目录下</p>
+
+<p>查看ruby版本：ruby -v</p>
+
+<p>设置ruby默认版本：rvm use 2.7.0 –default</p>
+
+<h1 id="配置bash_profile环境">配置.bash_profile环境</h1>
+
+<p>不搞这一步后面就有坑了，后面报错，可以先提前解决。</p>
+
+<p>.bash_profile在vim ~/.bash_profile下</p>
+
+<p>步骤如下：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install </span>git <span class="nt">-y</span>
+
+git clone https://github.com/Linuxbrew/brew.git ~/.linuxbrew（下载看个人网速）
+
+git clone https://github.com/Linuxbrew/homebrew-core ~/.linuxbrew/Library/Taps/homebrew（很久）
+
+vim /root/.bash_profile，添加下面内容：
+
+<span class="k">*</span> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.linuxbrew/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+<span class="k">*</span> <span class="nb">export </span><span class="nv">MANPATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.linuxbrew/share/man:</span><span class="nv">$MANPATH</span><span class="s2">"</span>
+<span class="k">*</span> <span class="nb">export </span><span class="nv">INFOPATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.linuxbrew/share/info:</span><span class="nv">$INFOPATH</span><span class="s2">"</span>
+
+重新加载：source bash_profile
+</code></pre></div></div>
+<h1 id="安装rvm">安装rvm</h1>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg2 <span class="nt">--recv-keys</span> 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+curl <span class="nt">-sSL</span> https://get.rvm.io | bash <span class="nt">-s</span> stable
+</code></pre></div></div>
+
+<p>注意，这一步报错：curl: (7) Failed connect to raw.githubusercontent.com:443; 拒绝连接</p>
+
+<p>解决：</p>
+
+<p>vim /etc/hosts添加如下内容即可</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>199.232.68.133 raw.githubusercontent.com
+</code></pre></div></div>
+<p>解析域名，可<a href="https://blog.csdn.net/xt_123456/article/details/105884220?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-1">参考</a></p>
+
+<p>加载配置：</p>
+<ul>
+  <li>source ~/.bashrc</li>
+  <li>source ~/.bash_profile</li>
+</ul>
+
+<p>修改 RVM 下载 Ruby 的源，到 Ruby China 的镜像:</p>
+
+<p>echo “ruby_url=https://cache.ruby-china.com/pub/ruby” &gt; ~/.rvm/user/db（报错也没事，后面用gem完成）</p>
+
+<p>加载脚本：source /etc/profile.d/rvm.sh</p>
+
+<p>检查一下是否安装正确：</p>
+
+<p>rvm -v</p>
+
+<p>rvm 1.22.17 (stable) by Wayne E. Seguin [https://rvm.io/]</p>
+
+<h1 id="安装gem">安装gem</h1>
+
+<p><a href="https://rubygems.org/releases">gem官网</a>，可以在上面看到你所安装的软件，依赖软件的版本。</p>
+
+<p>(建议安装2.7.0)</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm requirements
+
+rvm <span class="nb">install </span>2.3.0
+
+rvm <span class="nb">install </span>2.7.0 <span class="nt">--disable-binary</span>（推荐）
+
+设置ruby默认版本：rvm use 2.7.0 <span class="nt">--default</span>
+
+检查：ruby <span class="nt">-v</span>，gem <span class="nt">-v</span>
+</code></pre></div></div>
+<h1 id="安装bundler">安装bundler</h1>
+
+<p>gem install bundler</p>
+
+<h1 id="安装rails">安装rails</h1>
+
+<p>gem install rails</p>
+
+<p>检查：rails -v</p>
+
+<h1 id="安装jekyll">安装jekyll</h1>
+
+<p>gem install jekyll</p>
+
+<p>检查：jekyll -v</p>
+
+<hr />
+<h1 id="大功告成">大功告成！</h1>
+<hr />
+
+<h1 id="启动jekyll指定一个ip">启动jekyll，指定一个IP</h1>
+
+<p>先创建一个blog，命令：jekyll new myblog</p>
+
+<p>(用模板就先：bundle install)</p>
+
+<p>然后进入到myblog目录下执行：bundle exec jekyll serve –watch –host=192.168.11.30</p>
+
+<p>浏览器访问：192.168.11.30:40009</p>
+
+<p>运行之后，它会加载自带的简单的配置文件。后面会下载一个做好的模板。</p>
+
+<h1 id="让git和jekyll交互">让git和jekyll交互</h1>
+
+<p>git的使用：</p>
+
+<p><a href="https://segmentfault.com/a/1190000013705747">参考</a></p>
+
+<p>在git上创建一个learn仓库</p>
+
+<p>在github上创建你的账号之后，到系统的/root/myblog目录下拉取仓库</p>
+
+<p>[root@new-centos7 myblog]# git clone https://github.com/yuanmie-m/learn.git</p>
+
+<p>之后本地会多一个learn的目录</p>
+
+<p>在learn内创建一个index.html文件，随便写一个内容</p>
+
+<p>[root@new-centos7 learn]# git add –all</p>
+
+<p>[root@new-centos7 learn]# git commit -m “initial commit”</p>
+
+<p>添加邮箱：qq和163都可以，建议使用163</p>
+
+<p>[root@new-centos7 learn]# git config –global user.email “yuanmie_m@163.com”</p>
+
+<p>输入git的账号：</p>
+
+<p>[root@new-centos7 learn]# git config –global user.name “yuanmie-m”</p>
+
+<p>然后在commit</p>
+
+<p>[root@new-centos7 learn]# git commit -m “initial commit”</p>
+
+<p>[root@new-centos7 learn]# ll</p>
+
+<p>push代码到github上，就可以在github上看到index文件了</p>
+
+<p>[root@new-centos7 learn]# git push -u origin master</p>
+
+<h1 id="使用jekyll模板来创建你的博客">使用jekyll模板来创建你的博客</h1>
+
+<p>下载一个模板，<a href="http://jekyllthemes.org/">网站</a></p>
+
+<p>下载一个模板2步将这个模板应用起来：</p>
+
+<ul>
+  <li>1.bundle install</li>
+  <li>2.bundle exec jekyll serve –watch –host=192.168.11.30</li>
+</ul>
+
+<p>将文件夹上传到/root目录，之后在安装相关插件：</p>
+
+<p>[root@new-centos7 airspace-jekyll-master]# bundle install</p>
+
+<p>运行：</p>
+
+<p>[root@new-centos7 airspace-jekyll-master]# bundle exec jekyll serve –watch –host=192.168.11.30</p>
+
+<p>浏览器访问：192.168.11.30:4000</p>
+
+<p>将你的代码上传到github之后，也可以用github直接域名访问：https://{GitHub用户名}.github.io</p>
+:ET
