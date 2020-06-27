@@ -10,7 +10,7 @@ tags:
     - prometheus
 ---
 
-> “prometheus on2. ”
+> “prometheus---第2篇. ”
 
 每学一样东西你都该问自己一些问题，学会问问题也是一种自我提升方式。
 

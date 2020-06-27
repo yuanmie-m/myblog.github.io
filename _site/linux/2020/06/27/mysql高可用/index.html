@@ -10,7 +10,7 @@
     <meta name="keywords"  content=" Linux, k8s, docker,ELK，prometheus， Zabbix">
     <meta name="theme-color" content="#000000">
     
-    <title>jekyll之_posts - yuanmie</title>
+    <title>mysql高可用 - yuanmie</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://192.168.11.32:4000/2020/06/25/jekyll+github-post/">
+    <link rel="canonical" href="http://192.168.11.32:4000/linux/2020/06/27/mysql%E9%AB%98%E5%8F%AF%E7%94%A8/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -158,13 +158,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-mysql.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-2015.jpg')
+        background-image: url('/img/post-bg-mysql.jpg')
     }
 
     
@@ -177,15 +177,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#jekyll" title="jekyll">jekyll</a>
+                        <a class="tag" href="/tags/#高可用" title="高可用">高可用</a>
                         
                     </div>
-                    <h1>jekyll之_posts</h1>
+                    <h1>mysql高可用</h1>
                     
                     
-                    <h2 class="subheading"> "jekyll语法"</h2>
+                    <h2 class="subheading">mysql的学习</h2>
                     
-                    <span class="meta">Posted by yuanmie on June 25, 2020</span>
+                    <span class="meta">Posted by yuanmie on June 27, 2020</span>
                 </div>
             </div>
         </div>
@@ -204,58 +204,13 @@
                 post-container">
 
 				<blockquote>
-  <p>“no3. ”</p>
+  <p>高可用之mysql—第2篇. ”</p>
 </blockquote>
 
-<p>首先感谢大佬<a href="https://github.com/Huxpro/huxpro.github.io">Huxpro</a>做的模板，非常喜欢，风格也简约，blog的管理也非常方便。</p>
+<p>mysql高可用是如何实现的？</p>
 
-<p>先知道安装，可以参考我的另一篇，把坑都填好了。运行起来之后，在看jekyll的目录结构，搞清楚每一个文档是干什么的。</p>
+<p>在mysql高可用内，你遇到什么问题？如何解决？</p>
 
-<h2 id="_posts文件">_posts文件</h2>
-
-<p>这里放的就是你的文章了。文件格式很重要，必须符合：<code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-TITLE.MARKUP</code>。The permalinks可以在文章中自己定制，但是数据和标记语言都是根据文件名来确定的。</p>
-
-<h2 id="内容格式及修饰">内容格式及修饰</h2>
-
-<p>分为2部分，yaml头文件和内容</p>
-
-<p>1.yaml头文件的格式，这个比较简单</p>
-
-<p>2.具体内容</p>
-
-<p>拿一篇文章来说，举个例子体现出用了什么东西。</p>
-
-<p>最喜欢的一部修真小说，从初中接触到大学毕业一直看，看了7遍，可以说里面的每一个场景都记得，就拿里面的一些东西来举例，顺便也做个例子。</p>
-
-<p>标题格式：### 内容</p>
-
-<h3 id="隔一行和不隔一行的区别">隔一行和不隔一行的区别：</h3>
-
-<p>玉符现，天地乱，虚无出，七界哭。逆天子，万灭徒，相逢日，七界无。</p>
-
-<p>夜月斩，夜月斩，太玄山上，黄河之畔。得之无意间，几许回忆在心田。
-太玄山，天地间，修真几许为神仙？少年心，贪尘缘，狂剑纵横为红颜！</p>
-
-<h3 id="链接格式">链接格式</h3>
-
-<p>内容[]+()链接，在英文键盘下输入</p>
-
-<p><a href="https://baike.baidu.com/item/%E4%B8%83%E7%95%8C%E4%BC%A0%E8%AF%B4%E6%AD%A3%E4%BC%A0">七界传说-百度百科</a></p>
-
-<h3 id="列表格式">列表格式</h3>
-
-<ul>
-  <li>述不清，道不明，世间最烦是感情！</li>
-  <li>见着怨，不见念，最难割舍最难断，是缘是孽，如何分辨？</li>
-</ul>
-
-<h3 id="字体格式">字体格式</h3>
-
-<p>字体加颜色：
-<code class="language-plaintext highlighter-rouge">百世轮回，千世转变，沧海桑田，我心不变。</code></p>
-
-<p>字体加粗：
-<strong>如此星辰如此月，结伴携手月下行。</strong></p>
 
 
                 <hr style="visibility: hidden;">
@@ -263,17 +218,17 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/06/25/ks8-thinks/" data-toggle="tooltip" data-placement="top" title="k8s一些思考">
+                        <a href="/linux/2020/06/27/jenkins/" data-toggle="tooltip" data-placement="top" title="jenkins">
                         Previous<br>
-                        <span>k8s一些思考</span>
+                        <span>jenkins</span>
                         </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/linux/2020/06/27/ELK/" data-toggle="tooltip" data-placement="top" title="ELK">
+                        <a href="/linux/2020/06/27/nginx/" data-toggle="tooltip" data-placement="top" title="nginx">
                         Next<br>
-                        <span>ELK</span>
+                        <span>nginx</span>
                         </a>
                     </li>
                     
@@ -366,6 +321,10 @@
         				
                             
         				
+                            
+                				<a href="/tags/#高可用" title="高可用" rel="2">
+                                    高可用
+                                </a>
                             
         				
                             

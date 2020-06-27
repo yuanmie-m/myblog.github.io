@@ -5,14 +5,14 @@
     <description>疯狂的学习.</description>
     <link>http://192.168.11.32:4000/</link>
     <atom:link href="http://192.168.11.32:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 27 Jun 2020 14:48:39 +0800</pubDate>
-    <lastBuildDate>Sat, 27 Jun 2020 14:48:39 +0800</lastBuildDate>
+    <pubDate>Sat, 27 Jun 2020 22:52:24 +0800</pubDate>
+    <lastBuildDate>Sat, 27 Jun 2020 22:52:24 +0800</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
     
       <item>
         <title>高可用解决方案</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;“高可用 on1. ”&lt;/p&gt;
+  &lt;p&gt;“高可用—第1篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h1 id=&quot;高可用&quot;&gt;高可用&lt;/h1&gt;
@@ -32,7 +32,7 @@
       <item>
         <title>zabbix</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;“zabbix on1. ”&lt;/p&gt;
+  &lt;p&gt;“zabbix—第1篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;zabbix，是什么。&lt;/p&gt;
@@ -54,18 +54,86 @@
       <item>
         <title>nginx</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;nginx on1. ”&lt;/p&gt;
+  &lt;p&gt;nginx—第1篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;nginx，搞懂反向代理和负载均衡！&lt;/p&gt;
 
 &lt;h1 id=&quot;反向代理&quot;&gt;反向代理&lt;/h1&gt;
 
-&lt;p&gt;反向代理怎么做？具体如何实现？&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;反向代理怎么做？具体如何实现？&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;代理的分类&quot;&gt;代理的分类&lt;/h2&gt;
+
+&lt;p&gt;有反向代理就有正向代理。&lt;/p&gt;
+
+&lt;h3 id=&quot;概念&quot;&gt;概念&lt;/h3&gt;
+&lt;p&gt;正向代理：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;正向代理，架设在客户机与目标主机之间，只用于代理内部网络对Internet的连接请求，客户机必须指定代理服务器,并将本来要直接发送到Web服务器上的http请求发送到代理服务器中。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;反向代理：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;反向代理服务器架设在服务器端，通过缓冲经常被请求的页面来缓解服务器的工作量，将客户机请求转发给内部网络上的目标服务器；并将从服务器上得到的结果返回给Internet上请求连接的客户端（理解+背），此时代理服务器与目标主机一起对外表现为一个服务器。 ### 区别 反向代理和正向代理的区别就是：
+
+正向代理代理客户端，反向代理代理服务器。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;作用&quot;&gt;作用&lt;/h3&gt;
+&lt;p&gt;正向代理：类似一个跳板机，代理访问外部资源。（在客户机和目标主机之间）&lt;/p&gt;
+
+&lt;p&gt;作用：&lt;/p&gt;
+
+&lt;p&gt;（1）访问原来无法访问的资源，如google（做VPN）&lt;/p&gt;
+
+&lt;p&gt;（2）可以做缓存，加速访问资源&lt;/p&gt;
+
+&lt;p&gt;（3）对客户端访问授权，上网进行认证&lt;/p&gt;
+
+&lt;p&gt;（4）代理可以记录用户访问记录（上网行为管理），对外隐藏用户信息&lt;/p&gt;
+
+&lt;p&gt;反向代理：以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端。（架设在服务器端）&lt;/p&gt;
+
+&lt;p&gt;作用：&lt;/p&gt;
+
+&lt;p&gt;（1）保证内网的安全，阻止web攻击，大型网站，通常将反向代理作为公网访问地址，Web服务器是内网&lt;/p&gt;
+
+&lt;p&gt;（2）负载均衡，通过反向代理服务器来优化网站的负载&lt;/p&gt;
+
+&lt;p&gt;（3）通过缓存静态资源，加速Web请求。&lt;/p&gt;
+
+&lt;h3 id=&quot;透明代理&quot;&gt;透明代理&lt;/h3&gt;
+
+&lt;p&gt;面试被问到了。&lt;/p&gt;
+
+&lt;p&gt;它主要指内网主机需要访问外网主机时，不需要做任何设置，完全意识不到防火墙的存在，而完成内外网的通信。但其基本原理是防火墙代替内部网络主机完成与外网主机通信，然后把结果传回给内网主机，在这个过程中，无论内网主机还是外网主机都意识不到它们其实是在和防火墙通信。而从外网只能看到防火墙，这就隐藏了内网网络，提高了安全性。&lt;/p&gt;
+
+&lt;h2 id=&quot;nginx反向代理的例子&quot;&gt;nginx反向代理的例子&lt;/h2&gt;
 
 &lt;h1 id=&quot;负载均衡&quot;&gt;负载均衡&lt;/h1&gt;
 
-&lt;p&gt;负载均衡怎么做？具体怎么实现？&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;负载均衡怎么做？具体怎么实现？&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;一句话：nginx会给你分配服务器压力小的去访问。&lt;/p&gt;
+
+&lt;p&gt;如何去实现负载均衡？&lt;a href=&quot;http://nginx.org/en/docs/http/load_balancing.html&quot;&gt;官网&lt;/a&gt;给了几种方法。&lt;/p&gt;
+
+&lt;h2 id=&quot;轮循默认&quot;&gt;轮循（默认）&lt;/h2&gt;
+
+&lt;p&gt;Nginx根据请求次数，将每个请求均匀分配到每台服务器&lt;/p&gt;
+
+&lt;h2 id=&quot;最少连接&quot;&gt;最少连接&lt;/h2&gt;
+
+&lt;p&gt;将请求分配给连接数最少的服务器。Nginx会统计哪些服务器的连接数最少。&lt;/p&gt;
+
+&lt;h2 id=&quot;ip-hash&quot;&gt;IP Hash&lt;/h2&gt;
+
+&lt;p&gt;绑定处理请求的服务器。第一次请求时，根据该客户端的IP算出一个HASH值，将请求分配到集群中的某一台服务器上。后面该客户端的所有请求，都将通过HASH算法，找到之前处理这台客户端请求的服务器，然后将请求交给它来处理。（如果客户已经访问了某个服务器，当用户再次访问时，会将该请求通过哈希算法，自动定位到该服务器。）&lt;/p&gt;
+
+&lt;h2 id=&quot;指定权重weight&quot;&gt;指定权重（weight）&lt;/h2&gt;
+
+&lt;p&gt;指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。&lt;/p&gt;
 </description>
         <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
         <link>http://192.168.11.32:4000/linux/2020/06/27/nginx/</link>
@@ -79,9 +147,31 @@
       </item>
     
       <item>
+        <title>mysql高可用</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;高可用之mysql—第2篇. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;mysql高可用是如何实现的？&lt;/p&gt;
+
+&lt;p&gt;在mysql高可用内，你遇到什么问题？如何解决？&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/27/mysql%E9%AB%98%E5%8F%AF%E7%94%A8/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/mysql%E9%AB%98%E5%8F%AF%E7%94%A8/</guid>
+        
+        <category>高可用</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
         <title>jenkins</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;jenkins on1. ”&lt;/p&gt;
+  &lt;p&gt;jenkins—第1篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;jenkins&lt;/p&gt;
@@ -103,7 +193,7 @@
       <item>
         <title>docker入门</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;“docker on1. ”&lt;/p&gt;
+  &lt;p&gt;“docker—第1篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h1 id=&quot;docker&quot;&gt;docker&lt;/h1&gt;
@@ -163,7 +253,7 @@ docker logs -f -t –since=”2020-06-27” –tail=100 CONTAINER_ID&lt;/p&gt;
       <item>
         <title>docker累积</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;“docker on2. ”&lt;/p&gt;
+  &lt;p&gt;“docker—第2篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;docker的一些累积，持续更新。&lt;/p&gt;
@@ -201,7 +291,7 @@ docker logs -f -t –since=”2020-06-27” –tail=100 CONTAINER_ID&lt;/p&gt;
       <item>
         <title>ELK</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;“ELK on1. ”&lt;/p&gt;
+  &lt;p&gt;“ELK—第1篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;ELK，是什么。&lt;/p&gt;
@@ -223,7 +313,7 @@ docker logs -f -t –since=”2020-06-27” –tail=100 CONTAINER_ID&lt;/p&gt;
       <item>
         <title>jekyll之_posts</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;“no3. ”&lt;/p&gt;
+  &lt;p&gt;“jekyll—第2篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;首先感谢大佬&lt;a href=&quot;https://github.com/Huxpro/huxpro.github.io&quot;&gt;Huxpro&lt;/a&gt;做的模板，非常喜欢，风格也简约，blog的管理也非常方便。&lt;/p&gt;
@@ -277,8 +367,8 @@ docker logs -f -t –since=”2020-06-27” –tail=100 CONTAINER_ID&lt;/p&gt;
 &lt;strong&gt;如此星辰如此月，结伴携手月下行。&lt;/strong&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 25 Jun 2020 18:16:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/2020/06/25/jekyll+github-post/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/jekyll+github-post/</guid>
+        <link>http://192.168.11.32:4000/2020/06/25/jekyll%E4%B9%8Bpost/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/jekyll%E4%B9%8Bpost/</guid>
         
         <category>jekyll</category>
         
@@ -288,7 +378,7 @@ docker logs -f -t –since=”2020-06-27” –tail=100 CONTAINER_ID&lt;/p&gt;
       <item>
         <title>k8s一些思考</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;“k8s on3. ”&lt;/p&gt;
+  &lt;p&gt;“k8s—第3篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;记录k8s的问题&lt;/p&gt;
@@ -426,82 +516,6 @@ periodSeconds: 20&lt;/p&gt;
         <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/ks8-thinks/</guid>
         
         <category>k8s</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>prometheus--问题</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“prometheus on2. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;每学一样东西你都该问自己一些问题，学会问问题也是一种自我提升方式。&lt;/p&gt;
-
-&lt;h1 id=&quot;prometheus是如何存储数据的&quot;&gt;Prometheus是如何存储数据的？&lt;/h1&gt;
-&lt;p&gt;prometheus采用time-series(时间序列)方式，存储在本地硬盘。&lt;/p&gt;
-
-&lt;p&gt;prometheus本地T-S数据库以每2小时间隔来分block(块)存储，每个块又分为多个chunk文件，chunk文件用来存放采集的数据的T-S（time-series）数据，metadata和索引文件；&lt;/p&gt;
-
-&lt;p&gt;index文件是对metrics和labels进行索引之后存储在chunk中，chunk是作为基本存储单位，index和metadata作为子集；&lt;/p&gt;
-
-&lt;p&gt;prometheus平时采集到的数据先存放在内存之中，对内存消耗大，以缓存的方式可以加快搜索和访问；&lt;/p&gt;
-
-&lt;p&gt;在prometheus宕机时，prometheus有一种保护机制WAL，可以将数据定期存入硬盘中以chunk来表示，在重新启动时，可以恢复进内存当中。&lt;/p&gt;
-
-&lt;p&gt;当通过API删除序列时，删除的记录存储在单独的tombstone文件中(而不是立即从块文件中删除数据)。&lt;/p&gt;
-
-&lt;p&gt;注意：&lt;/p&gt;
-
-&lt;p&gt;这里需要注意的是，本地存储的一个限制是它不是集群的或可复制的。因此，在磁盘或节点宕机时，它也不是任意可伸缩或持久的，对于磁盘可用性，建议使用RAID、备份快照、容量规划等，以提高持久性。应该通过适当的存储持久性和计划在本地存储中存储多年的数据。&lt;/p&gt;
-
-&lt;h1 id=&quot;prometheus集成的服务发现功能&quot;&gt;prometheus集成的服务发现功能？&lt;/h1&gt;
-
-&lt;p&gt;之前有说，看prometheus架构这一篇&lt;/p&gt;
-
-&lt;h1 id=&quot;prometheus数据采集的方式&quot;&gt;Prometheus数据采集的方式？&lt;/h1&gt;
-&lt;p&gt;prometheus客户端主要由2种数据采集的方式：&lt;/p&gt;
-
-&lt;p&gt;pull：主动拉取形式&lt;/p&gt;
-
-&lt;p&gt;push：被动推送的形式&lt;/p&gt;
-
-&lt;p&gt;pull：指的是客户端（被监控主机）先安装各类已有的exporters在系统上，exporters以守护进程的模式运行，并开始采集数据，exporters本身也是一个http_server，可以对http请求作出响应，并返回K/V数据，也就是metrics。prometheus通过用pull的方式（HTTP_GET）去访问每个节点上的exporter并采集回需要的数据。&lt;/p&gt;
-
-&lt;p&gt;push：指的是客户端（或服务端）安装官方的pushgateway插件，然后通过我们自行编写的各种脚本，将监控数据组织成K/V的形式（metrics形式）发送给pushgateway，而后pushgateway再推送给prometheus，这里需要注意的是pushgateway不一定要安装在被监控端，也可以安装在服务端，甚至是一台不相关的主机上，换句话来说，它只是一个中间转发的媒介。&lt;/p&gt;
-
-&lt;h1 id=&quot;prometheus如何实现告警&quot;&gt;Prometheus如何实现告警？&lt;/h1&gt;
-&lt;p&gt;使用alertmanager&lt;/p&gt;
-
-&lt;h1 id=&quot;什么是metrics&quot;&gt;什么是metrics？&lt;/h1&gt;
-&lt;p&gt;一组K/V数据就是metrics，总体上来说metrics是对采集过来的数据的一种统称，并非一个具体的数值或指标。&lt;/p&gt;
-
-&lt;h1 id=&quot;metrics的类型&quot;&gt;metrics的类型？&lt;/h1&gt;
-&lt;p&gt;Gauges：最简单的度量指标，只有一个简单的返回值，或者叫做瞬时状态，比如要采集硬盘容量或内存使用率，就可以用gauges的metrics格式来度量。因为硬盘和内存是随着时间推移不断地变化，没有规则的变化，当前是多少，采集回来的就是多少，既不能肯定是一直持续增长，也不能肯定是一直降低，是多少就是多少，这种就是Gauges使用类型的代表。&lt;/p&gt;
-
-&lt;p&gt;Counters：Counters就是计数器，从数据量0开始累积计算，理想状态下，只能是永远的增长，绝不会出现降低，比如用户的访问量采样数据，我们的产品被用户访问了一次就是1，过了10分钟后积累到100，过了1天就累积到20000。&lt;/p&gt;
-
-&lt;p&gt;Histograms：柱状图，用于观察结果采样，分组及统计，如：请求持续时间，响应大小。其主要用于表示一段时间内对数据的采样，并能够对其指定区间及总数进行统计。根据统计区间计算。&lt;/p&gt;
-
-&lt;p&gt;Summary：类似Histogram，用于表示一段时间内数据采样结果，其直接存储quantile数据，而不是根据统计区间计算出来的。不需要计算，直接存储结果。&lt;/p&gt;
-
-&lt;h1 id=&quot;什么是node-exporter&quot;&gt;什么是node-exporter&lt;/h1&gt;
-&lt;p&gt;Prometheus为了支持各种中间件以及第三方的监控提供了exporter，大家可以把它理解成监控适配器，将不同指标类型和格式的数据统一转化为Prometheus能够识别的指标类型。&lt;/p&gt;
-
-&lt;p&gt;譬如Node exporter主要通过读取Linux的/proc以及/sys目录下的系统文件获取操作系统运行状态，reids exporter通过Reids命令行获取指标，mysql exporter通过读取数据库监控表获取MySQL的性能数据。他们将这些异构的数据转化为标准的Prometheus格式，并提供HTTP查询接口。&lt;/p&gt;
-
-&lt;h1 id=&quot;什么是pushgateway&quot;&gt;什么是pushgateway？&lt;/h1&gt;
-&lt;p&gt;通过node-exporter可以收集到各种服务器的相关性指标，但是并没有办法满足我们的定制化需求，比如需要监控某个进程数，某个进程打开的文件数，某个进程消耗的内存等等，这就需要一个定制化的监控项，类似于zabbix的自定义监控项是一个道理。&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;以上内容&lt;a href=&quot;https://www.cnblogs.com/linuxk/p/12017580.html&quot;&gt;原文&lt;/a&gt;
-—&lt;/p&gt;
-</description>
-        <pubDate>Thu, 25 Jun 2020 10:03:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/2020/06/25/promethus-thinks/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/promethus-thinks/</guid>
-        
-        <category>prometheus</category>
         
         
       </item>

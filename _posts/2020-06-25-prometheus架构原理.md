@@ -10,7 +10,7 @@ tags:
     - prometheus
 ---
 
-> “prometheus on1. ”
+> “prometheus---第1篇. ”
 
 prometheus是一个开源的监控系统和时序数据库，Prometheus使用Go语言开发。
 

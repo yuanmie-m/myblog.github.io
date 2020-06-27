@@ -10,7 +10,7 @@ tags:
     - jekyll
 ---
 
-> “start. ”
+> “jekyll---第1篇. ”
 
 使用jekyll+github部署自己的博客，并使用自定义域名访问。
 

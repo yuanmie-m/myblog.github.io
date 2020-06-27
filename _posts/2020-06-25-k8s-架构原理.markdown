@@ -10,7 +10,7 @@ tags:
     - k8s
 ---
 
-> “k8s on1. ”
+> “k8s---第1篇. ”
 
 k8s详细学习看[官网](https://kubernetes.io/zh/docs/home/)，自己做一个归纳总结。
 

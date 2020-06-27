@@ -10,7 +10,7 @@ tags:
     - jekyll
 ---
 
-> “no3. ”
+> “jekyll---第2篇. ”
 
 首先感谢大佬[Huxpro](https://github.com/Huxpro/huxpro.github.io)做的模板，非常喜欢，风格也简约，blog的管理也非常方便。
 

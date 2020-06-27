@@ -1,0 +1,271 @@
+I"�1<blockquote>
+  <p>“k8s第2篇. ”</p>
+</blockquote>
+
+<p>k8s详细学习看<a href="https://kubernetes.io/zh/docs/home/">官网</a>，自己做一个归纳总结。</p>
+
+<h1 id="k8s入门">k8s入门</h1>
+
+<p>k8s的2个主要部分：master主控节点和node运算节点。</p>
+
+<p>架构图：
+<img src="https://imgcdn.chenyongjun.vip/2020/02/09/2.png" alt="avatar" /></p>
+
+<h2 id="master-主控节点">master-主控节点</h2>
+
+<p>master包括：etcd，apiserver，scheduler，controller manager，Container runtime</p>
+
+<p>各组件的作用：</p>
+
+<p>etcd：保存集群的状态，go语言开发，raft算法实现。</p>
+
+<p>apiserver：资源访问的唯一入口，用于认证、授权，API注册和发现机制</p>
+
+<p>scheduler：资源调度，按照预选和优选调度将pod调度到合适的节点上。（还有污点和容忍的概念）</p>
+
+<p>controller manager：维护集群的状态，如故障检测，自动扩展，滚动更新</p>
+
+<p>container runtime：负责镜像管理及pod和容器的真正运行</p>
+
+<h2 id="node-运算节点">node-运算节点</h2>
+<p>node包括：kubelet，kube-proxy</p>
+
+<p>各组件的作用：</p>
+
+<p>kubelet：容器的生命周期（pending，running，seccessd，unknow，faild），同时也负责volume（CVI）和网络（CNI）插件</p>
+
+<p>kube-proxy：为service提供cluser内部的网络代理和负载均衡（ingress的实现：
+traefik，ingress-nginx，hapoxy）</p>
+
+<h2 id="其他组件">其他组件</h2>
+<p>kube-dns：为集群提供dns服务，如coredns（域名访问及解析）</p>
+
+<p>heapster：资源监控</p>
+
+<p>dashboard：k8s的GUI界面</p>
+
+<p>elk：日志收集</p>
+
+<p>核心附件：</p>
+
+<p>CNI网络插件：flannel/calico</p>
+
+<p>服务发现用插件：coredns</p>
+
+<p>服务暴露用插件：traefik</p>
+
+<p>GUI管理插件：dashboard</p>
+
+<h2 id="各个组件的互相工作原理">各个组件的互相工作原理</h2>
+
+<h3 id="如创建一个pod过程如下">如创建一个pod，过程如下：</h3>
+
+<p>1.用户发出一个命令，kubelet去创建pod、service等等，如：create，delete，apply等等。</p>
+
+<p>2.apiserver将pod/service写入到etcd中。</p>
+
+<p>3.scheduler检测到未绑定节点的pod，通过优选和预选，将pod调度到节点上。</p>
+
+<p>4.kubelet检测到有新的pod调度过来，通过container runtime运行该pod。</p>
+
+<p>5.kublet取到pod状态，并更新到apiserver中，apiserver在将信息写入etcd中。</p>
+
+<h3 id="删除一个pod过程如下">删除一个pod，过程如下：</h3>
+<p>1、apiserver handler执行了两次，第一次主要是修改Pod信息，设置DeletionTimestamp和DeletionGracePeriodSeconds信息，第二次去数据库etcd删除Pod信息；</p>
+
+<p>2、kubelet通过检测到Pod内的资源已经完全释放之后，触发了第二次删除事件，且是强制删除Pod；</p>
+
+<p>3、kubelet的DELETE操作其实监听到的是Pod的更新事件，Pod删除之后，执行的是REMOVE操作；</p>
+
+<p>处理流程为：</p>
+
+<p>客户端请求删除Pod–&gt;apiserver更新Pod信息–&gt;kubelet优雅释放Pod资源–&gt;kubelet请求删除Pod–&gt;apiserver删除etcd中Pod信息–&gt;kubelet完成最终Pod的资源清理。
+交互简单理解：</p>
+
+<h2 id="控制器管理器">控制器管理器</h2>
+<h3 id="deployment">deployment</h3>
+
+<p>作用：</p>
+
+<p>创建一个pod和RC/RS（ReplicaSet）的一个声明式定义的方法.</p>
+
+<p>应用场景：创建pod和RS，滚动升级和回滚应用，扩容和缩容，暂停和继续deployment</p>
+
+<p>deployment的生命周期：progressing，complete，fail to progress</p>
+
+<h4 id="rcrsdp的作用及区别">RC，RS，dp的作用及区别：</h4>
+
+<p>RC（Replication Controller）：确保pod数量（多了删少了加），确保pod健康，弹性伸缩，滚动升级。</p>
+
+<p>RS（Replica Set）：升级版的RC，用于保证与label selector匹配的pod数量维持在期望状态。</p>
+
+<p>deployment：创建一个pod和RC/RS（ReplicaSet）的一个声明式定义的方法</p>
+
+<p>区别：</p>
+
+<p>1.基于的方式</p>
+
+<p>RC只支持基于等式selector（env=dev或environment!=qa），但RS还支持新的，基于集合的selector（version in (v1.0, v2.0)或env notin (dev, qa)），这对复杂的运维管理很方便。</p>
+
+<p>2、升级方式</p>
+
+<p>RS不能使用kubectlrolling-update进行升级</p>
+
+<p>kubectl rolling-update专用于rc</p>
+
+<p>RS升级使用deployment或者kubectl replace命令</p>
+
+<h3 id="daemonset">daemonset</h3>
+<p>作用：DaemonSet保证在每个Node上都运行一个容器副本，常用来部署一些集群的日志、监控或者其他系统管理应用。</p>
+
+<p>应用场景：</p>
+
+<ol>
+  <li>
+    <p>日志收集，比如fluentd，logstash等</p>
+  </li>
+  <li>
+    <p>系统监控，比如Prometheus Node Exporter，collectd，New Relic agent，Ganglia gmond等</p>
+  </li>
+  <li>
+    <p>系统程序，比如kube-proxy, kube-dns, glusterd, ceph等</p>
+  </li>
+</ol>
+
+<h3 id="statefulset">statefulset</h3>
+<p>作用：为了解决有状态服务的问题</p>
+
+<p>应用场景：</p>
+
+<ol>
+  <li>
+    <p>稳定的持久化存储，即Pod重新调度后还是能访问到相同的持久化数据，基于PVC来实现</p>
+  </li>
+  <li>
+    <p>稳定的网络标志，即Pod重新调度后其PodName和HostName不变，基于Headless Service（即没有Cluster IP的Service）来实现</p>
+  </li>
+  <li>
+    <p>有序部署，有序扩展，即Pod是有顺序的，在部署或者扩展的时候要依据定义的顺序依次依次进行（即从0到N-1，在下一个Pod运行之前所有之前的Pod必须都是Running和Ready状态），基于init containers来实现</p>
+  </li>
+  <li>
+    <p>有序收缩，有序删除（即从N-1到0）</p>
+  </li>
+</ol>
+
+<p>无状态的服务：deployment，RC，RS</p>
+
+<p>有状态的服务：mysql，zookeeper，</p>
+
+<h4 id="无状态服务和有状态服务的含义及区别">无状态服务和有状态服务的含义及区别？</h4>
+<p>含义：</p>
+
+<p>无状态服务：是指该服务运行的实例不会在本地存储需要持久化的数据，并且多个实例对于同一个请求响应的结果是完全一致的。（不存储）</p>
+
+<p>有状态服务：是指该服务的实例可以将一部分数据随时进行备份，并且在创建一个新的有状态服务时，可以通过备份恢复这些数据，以达到数据持久化的目的。（存储并备份，新创建一个服务时，通过备份恢复数据）</p>
+
+<p>区别：</p>
+
+<ol>
+  <li>
+    <p>实例数量：无状态服务可以有一个或多个实例，因此支持两种服务容量调节模式；有状态服务只能有一个实例，不允许创建多个实例，因此也不支持服务容量调节模式。</p>
+  </li>
+  <li>
+    <p>存储卷：无状态服务可以有存储卷，也可以没有，即使有也无法备份存储卷里面的数据；有状态服务必须要有存储卷，并且在创建服务时，必须指定给该存储卷分配的磁盘空间大小。</p>
+  </li>
+  <li>
+    <p>数据存储：无状态服务运行过程中的所有数据（除日志和监控数据）都存在容器实例里的文件系统中，如果实例停止或者删除，则这些数据都将丢失，无法找回；而对于有状态服务，凡是已经挂载了存储卷的目录下的文件内容都可以随时进行备份，备份的数据可以下载，也可以用于恢复新的服务。但对于没有挂载卷的目录下的数据，仍然是无法备份和保存的，如果实例停止或者删除，这些非挂载卷里的文件内容同样会丢失。</p>
+  </li>
+</ol>
+
+<h3 id="job">job</h3>
+<p>作用：处理短暂的一次性任务 (short lived one-off tasks)，即仅执行一次的任务。
+有以下几种job：</p>
+
+<p>非并行job，固定结束次数的job，带有工作队列的并行job</p>
+
+<h3 id="cronjob">cronjob</h3>
+<p>作用：CronJob即定时任务</p>
+<h2 id="k8s中的3条网络">k8s中的3条网络</h2>
+<p>K8s中的网络
+<a href="https://www.cnblogs.com/muzinan110/p/11105809.html">参考</a>,<a href="https://www.cnblogs.com/linuxk/p/10517055.html">参考</a></p>
+
+<p>一个K8S集群包含是三个网络。</p>
+
+<p>（1）node节点网络：各主机（Master、Node、ETCD等）自身所属的网络，地址配置在主机的网络接口，用于各主机之间的通信，又称为节点网络。</p>
+
+<p>（2）Pod网络（容器之间，对内）：专用于Pod资源对象的网络，它是一个虚拟网络，用于为各Pod对象设定IP地址等网络参数，其地址配置在Pod中容器的网络接口上。Pod网络需要借助kubenet插件或CNI插件实现。
+（pod与pod之间的网络）</p>
+
+<p>（3）Service网络（集群内的service网络，相对于pod来说是对外）：专用于Service资源对象的网络，它也是一个虚拟网络，用于为K8S集群之中的Service配置IP地址，
+但是该地址不会配置在任何主机或容器的网络接口上，而是通过Node上的kube-proxy配置为iptables或ipvs规则，从而将发往该地址的所有流量调度到后端的各Pod对象之
+上。
+（一组pod对外的暴露接口）</p>
+
+<h3 id="pod网络的实现flannelcalico等等">pod网络的实现：flannel，calico等等</h3>
+
+<p>flannel，calico的区别，优缺点？</p>
+
+<h3 id="flannel的三种模型">flannel的三种模型：</h3>
+
+<p>Flannel host-gw模型，flannel vxlan模型，flannel 直接路由模型。</p>
+
+<p>跨主机通信的一个解决方案是Flannel，由CoreOS推出，支持3种实现：UDP、VXLAN、host-gw</p>
+
+<p>udp模式：使用设备flannel.0进行封包解包，不是内核原生支持，上下文切换较大，性能非常差</p>
+
+<p>vxlan模式：使用flannel.1进行封包解包，内核原生支持，性能较强</p>
+
+<p>host-gw模式：无需flannel.1这样的中间设备，直接宿主机当作子网的下一跳地址，性能最强</p>
+
+<p>host-gw的性能损失大约在10%左右，而其他所有基于VXLAN“隧道”机制 的网络方案，性能损失在20%~30%左右。</p>
+
+<h4 id="howt-gw模式的工作原理">howt-gw模式的工作原理</h4>
+
+<p>就是将每个Flannel子网的下一跳，设置成了该子网对应的宿主机的IP地址，也就是说，宿主机（host）充当了这条容器通信路径的“网关”（Gateway），这正是host-gw的含义。</p>
+
+<p>Kube-proxy实现service的3种方式：userspace，iptables，ipvs</p>
+
+<p><a href="https://draveness.me/kubernetes-service/">参考</a></p>
+
+<p>区别优缺点：</p>
+
+<p>1.userspace：调度pod网络和节点网络的时候用到大量的内核资源。</p>
+
+<p>2.iptables：做一个nat映射，做负载均衡时：会时延，匹配时延和规则更新时延。可扩张性：当iptables数量非常大时，更新会非常慢。可用性：服务扩容/缩容时，iptables规则的刷新会导致连接断开，服务不可用。</p>
+
+<p>3.ipvs：是在kernel模式下通过netfilter实现的，采用了hash table来存储规则，因此在规则较多的情况下，Ipvs相对iptables转发效率更高。ipvs也支持更多的LB（10种调度算法）算法。如果要设置Kube-proxy为ipvs模式，必须在操作系统中安装IPVS内核模块。
+ipvs有3种转发模式：DR，隧道和NAT模式
+<a href="https://zhuanlan.zhihu.com/p/37230013">参考</a></p>
+
+<p>注意server和Ingress的区别：</p>
+
+<p>service</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>在K8S的世界里，虽然每个pod都会被分配一个单独的IP地址，但这个IP地址会随着
+
+pod的销毁而消失。
+
+service就是用来解决这个问题的核心概念。
+
+一个service可以看作是一组提供相同服务的pod的对外访问接口（pod的对外访问接口），4层。
+
+service作用于哪些pod是通过标签选择器来定义的。
+</code></pre></div></div>
+
+<p>Ingress</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ingress是K8S集群里工作在OSI网络参考模型下，第7层的应用，对外暴露的接口（服务的对外访问接口）。
+
+service只能进行L4流量调度，表现形式是ip+port
+
+Ingress则可以调度不同业务域、不同URL访问路径的业务流量。
+</code></pre></div></div>
+
+<p>总结：service是一组pod对外的访问接口（userpase，iptables，ipvs去实现），4层：ip+port，协议+端口</p>
+
+<p>ingress是服务暴露的接口，用于反向代理（traefik，nginx-ingress，harpoxy去实现），7层：url和ip+port都可以</p>
+
+<p>4层：IOS网络参考模型第4层，传输层：TCP/UDP协议</p>
+
+<p>7层：IOS网络参考模型第7层，应用层：http，https等协议</p>
+:ET

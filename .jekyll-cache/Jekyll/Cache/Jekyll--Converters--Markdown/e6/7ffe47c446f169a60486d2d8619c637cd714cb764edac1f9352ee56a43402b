@@ -1,0 +1,254 @@
+I"�.<blockquote>
+  <p>“jekyll—第1篇. ”</p>
+</blockquote>
+
+<p>使用jekyll+github部署自己的博客，并使用自定义域名访问。</p>
+
+<h1 id="jekyllgithub搭建">jekyll+github搭建</h1>
+<p>环境：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@new-centos7 _posts]# <span class="nb">cat</span> /etc/redhat-release
+
+CentOS Linux release 7.5.1804 <span class="o">(</span>Core<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="安装ruby">安装Ruby</h2>
+
+<p>安装方法有很多种。</p>
+
+<p>1.直接安装即可：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install </span>ruby <span class="nt">-y</span>
+
+rvm <span class="nb">install </span>2.7.0 <span class="nt">--disable-binary</span>
+</code></pre></div></div>
+
+<p>2.源码包安装，去<a href="https://www.ruby-lang.org/zh_cn/">官网</a>下载。</p>
+
+<p>然后解压，编译：./config &amp;&amp; make &amp;&amp; make install，默认安装在/usr/local目录下</p>
+
+<p>查看ruby版本：ruby -v</p>
+
+<p>设置ruby默认版本：rvm use 2.7.0 –default</p>
+
+<h2 id="配置bash_profile环境">配置.bash_profile环境</h2>
+
+<p>不搞这一步后面就有坑了，后面报错，可以先提前解决。</p>
+
+<p>.bash_profile在vim ~/.bash_profile下</p>
+
+<p>步骤如下：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install </span>git <span class="nt">-y</span>
+
+git clone https://github.com/Linuxbrew/brew.git ~/.linuxbrew（下载看个人网速）
+
+git clone https://github.com/Linuxbrew/homebrew-core ~/.linuxbrew/Library/Taps/homebrew（很久）
+
+vim /root/.bash_profile，添加下面内容：
+
+<span class="k">*</span> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.linuxbrew/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+<span class="k">*</span> <span class="nb">export </span><span class="nv">MANPATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.linuxbrew/share/man:</span><span class="nv">$MANPATH</span><span class="s2">"</span>
+<span class="k">*</span> <span class="nb">export </span><span class="nv">INFOPATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.linuxbrew/share/info:</span><span class="nv">$INFOPATH</span><span class="s2">"</span>
+
+重新加载：source bash_profile
+</code></pre></div></div>
+<h1 id="安装rvm">安装rvm</h1>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg2 <span class="nt">--recv-keys</span> 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+curl <span class="nt">-sSL</span> https://get.rvm.io | bash <span class="nt">-s</span> stable
+</code></pre></div></div>
+
+<p>注意，这一步报错：curl: (7) Failed connect to raw.githubusercontent.com:443; 拒绝连接</p>
+
+<p>解决：</p>
+
+<p>vim /etc/hosts添加如下内容即可</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>199.232.68.133 raw.githubusercontent.com
+</code></pre></div></div>
+<p>解析域名，可<a href="https://blog.csdn.net/xt_123456/article/details/105884220?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-1">参考</a></p>
+
+<p>加载配置：</p>
+<ul>
+  <li>source ~/.bashrc</li>
+  <li>source ~/.bash_profile</li>
+</ul>
+
+<p>修改 RVM 下载 Ruby 的源，到 Ruby China 的镜像:</p>
+
+<p>echo “ruby_url=https://cache.ruby-china.com/pub/ruby” &gt; ~/.rvm/user/db（报错也没事，后面用gem完成）</p>
+
+<p>加载脚本：source /etc/profile.d/rvm.sh</p>
+
+<p>检查一下是否安装正确：</p>
+
+<p>rvm -v</p>
+
+<p>rvm 1.22.17 (stable) by Wayne E. Seguin [https://rvm.io/]</p>
+
+<h2 id="安装gem">安装gem</h2>
+
+<p><a href="https://rubygems.org/releases">gem官网</a>，可以在上面看到你所安装的软件，依赖软件的版本。</p>
+
+<p>(建议安装2.7.0)</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm requirements
+
+rvm <span class="nb">install </span>2.3.0
+
+rvm <span class="nb">install </span>2.7.0 <span class="nt">--disable-binary</span>（推荐）
+
+设置ruby默认版本：rvm use 2.7.0 <span class="nt">--default</span>
+
+检查：ruby <span class="nt">-v</span>，gem <span class="nt">-v</span>
+</code></pre></div></div>
+<h2 id="安装bundler">安装bundler</h2>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler
+</code></pre></div></div>
+<h2 id="安装rails">安装rails</h2>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>rails
+
+检查：rails <span class="nt">-v</span>
+</code></pre></div></div>
+<h2 id="安装jekyll">安装jekyll</h2>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll
+ 
+检查：jekyll <span class="nt">-v</span>
+</code></pre></div></div>
+<hr />
+<h2 id="大功告成">大功告成！</h2>
+<hr />
+
+<h2 id="启动jekyll指定一个ip">启动jekyll，指定一个IP</h2>
+
+<p>先创建一个blog，命令：jekyll new myblog</p>
+
+<p>(用模板就先：bundle install)</p>
+
+<p>然后进入到myblog目录下执行：bundle exec jekyll serve –watch –host=192.168.11.30</p>
+
+<p>浏览器访问：192.168.11.30:40009</p>
+
+<p>运行之后，它会加载自带的简单的配置文件。后面会下载一个做好的模板。</p>
+
+<h2 id="让git和jekyll交互">让git和jekyll交互</h2>
+
+<p>git的使用：</p>
+
+<p><a href="https://segmentfault.com/a/1190000013705747">参考</a></p>
+
+<p>在git上创建一个learn仓库</p>
+
+<p>在github上创建你的账号之后，到系统的/root/myblog目录下拉取仓库</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@new-centos7 myblog]# git clone https://github.com/yuanmie-m/learn.git
+</code></pre></div></div>
+<p>之后本地会多一个learn的目录</p>
+
+<p>在learn内创建一个index.html文件，随便写一个内容</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@new-centos7 learn]# git add <span class="nt">--all</span>
+
+<span class="o">[</span>root@new-centos7 learn]# git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
+
+
+添加邮箱：qq和163都可以，建议使用163
+
+<span class="o">[</span>root@new-centos7 learn]# git config <span class="nt">--global</span> user.email <span class="s2">"yuanmie_m@163.com"</span>
+
+输入git的账号：
+
+<span class="o">[</span>root@new-centos7 learn]# git config <span class="nt">--global</span> user.name <span class="s2">"yuanmie-m"</span>
+
+然后在commit
+
+<span class="o">[</span>root@new-centos7 learn]# git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
+
+<span class="o">[</span>root@new-centos7 learn]# ll
+
+
+push代码到github上，就可以在github上看到index文件了
+
+<span class="o">[</span>root@new-centos7 learn]# git push <span class="nt">-u</span> origin master
+</code></pre></div></div>
+<h2 id="使用jekyll模板来创建你的博客">使用jekyll模板来创建你的博客</h2>
+
+<p>下载一个模板，<a href="http://jekyllthemes.org/">网站</a></p>
+
+<p>下载一个模板2步将这个模板应用起来：</p>
+
+<ul>
+  <li>1.bundle install</li>
+  <li>2.bundle exec jekyll serve –watch –host=192.168.11.30</li>
+</ul>
+
+<p>将文件夹上传到/root目录，之后在安装相关插件：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@new-centos7 airspace-jekyll-master]# bundle <span class="nb">install
+
+</span>运行：
+
+<span class="o">[</span>root@new-centos7 airspace-jekyll-master]# bundle <span class="nb">exec </span>jekyll serve <span class="nt">--watch</span> <span class="nt">--host</span><span class="o">=</span>192.168.11.30
+</code></pre></div></div>
+<p>浏览器访问：192.168.11.30:4000</p>
+
+<p>将你的代码上传到github之后，也可以用github直接域名访问：https://{GitHub用户名}.github.io</p>
+
+<h1 id="github的限制">github的限制</h1>
+<p>Github Pages 并不是无限存储和无限流量的静态站点服务，一些限制如下：
+内容存储不能超过1GB。
+每个月100GB流量带宽。
+每小时编译构建次数不超过10次。（在线修改重新编译并未发现这个限制）
+更多参看官方说明：
+<a href="https://link.zhihu.com/?target=https%3A//help.github.com/articles/what-is-github-pages/%23usage-limits">usage-limits</a></p>
+
+<h1 id="安装过程中出现的问题">安装过程中出现的问题</h1>
+<p>1.from /usr/local/rvm/gems/ruby-2.7.0/gems/bundler-2.1.4/lib/bundler/errors.rb:3:in `&lt;top (required)&gt;’
+解决：重新安装：rvm install 2.3.0
+设置ruby版本：rvm use 2.7.0 –default
+这里使用2.3.0了不报错，后面执行还是报错，要先安装下面的：jekyll-paginate。</p>
+
+<p>2.Could not find gem ‘jekyll-paginate’ in any of the gem sources listed in your Gemfile
+解决：
+gem install jekyll-sitemap
+这里的坑，要安装jekyll-sitemap就要使用ruby-2.7.0，使用ruby-2.7.0编译bundler install就报错，最后的解决版本：先使用ruby-2.7.0去安装好 jekyll-sitemap，然后在设置ruby-2.3.0去编译bundler install，最后就可以使用bundler exec jekyll server了。。。。
+使用ruby-2.7.0编译bundler install就报错，不用ruby-2.7.0，那么jekyll-sitemap就按照不了。</p>
+
+<p>3.error: RPC failed; result=18, HTTP code = 2009.00 KiB/s
+解决：
+git config –global http.postBuffer 1024288000
+git config –list</p>
+
+<h1 id="github-page自定义域名">github page自定义域名</h1>
+<p>2步完成，先总结在细说。
+1.先要有一个自己的域名，买好域名之后，配置DNS域名解析。
+2.添加一个CNAMD文件，里面写你的域名。</p>
+<h2 id="自己域名配置">自己域名配置</h2>
+<p>1.买域名
+先要有一个自己的域名，我去阿里云上面注册的，域名有很多类型，每个域名都有它的适合用途。
+就可以选择自己的，在搜索栏输入自己想的名字，即可查看。
+买好域名之后，各种身份认证，实名认证，我这里从提交到完成，不到半个小时，很快！</p>
+
+<p>2.域名解析</p>
+
+<p>买好域名之后，配置DNS域名解析。后面在域名解析检测一下。
+进入域名列表。
+添加域名（刚开始添加域名，DNS服务器状态不是正常的）：
+之后点进去，配置域名解析。
+添加记录，主要是2条记录，记录值：是你的：仓库名.github.io</p>
+
+<p>添加好之后等。等到域名解析变为正常才行。可以使用阿里云上面的工具，检测是不是正常。</p>
+
+<p>同时也可以在你的博客系统上面检测。</p>
+
+<h2 id="使用阿里云免费ssl证书实现全站https化">使用阿里云免费SSL证书实现全站HTTPS化</h2>
+<p>购买免费ssl证书，直接在阿里云搜：DigiCert 免费版 SSL。
+然后认证即可。</p>
+
+<h2 id="github上设置">github上设置</h2>
+<p>1）添加一个CNAMD文件（大写，无后缀名）
+里面写你的域名，例如我的：yuanmie.co
+本地写好上传CNAMD文件。</p>
+
+<p>2）在setting中配置
+https://yuanmie-m.github.io/test.github.io/.</p>
+
+<p>（后面可以保存一个https:）</p>
+
+<p>然后配置：</p>
+
+<p>浏览器访问：yuanmie.co就是访问https://yuanmie-m.github.io/test.github.io了</p>
+:ET
