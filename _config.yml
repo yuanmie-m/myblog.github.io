@@ -2,10 +2,10 @@
 title: yuanmie
 SEOTitle: yuanmie
 header-img: img/home-bg.jpg
-email: yuanmie@gmail.com
+email: yuanmie_m@163.com
 description: "疯狂的学习."
 keyword: " Linux, k8s, docker,ELK，prometheus， Zabbix"
-url: "http://yuanmie.co"          # your host, for absolute URL
+url: "https://yuanmie.co"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/yuanmie-m/myblog.github.io.git" # you code repository
 

@@ -4,7 +4,7 @@ title:      "prometheus--问题"
 subtitle:   " \"看懂架构远远不够，具体实现的细节是什么\""
 date:       2020-06-25 02:03:00
 author:     "yuanmie"
-header-img: "img/post-bg-os-metro.jpg"
+header-img: "img/post-bg-os-metro-prometheus.jpg"
 catalog: true
 tags:
     - prometheus

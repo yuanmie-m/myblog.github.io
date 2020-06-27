@@ -4,7 +4,7 @@ title:      "prometheus--架构原理"
 subtitle:   " \"架构原理要牢记！\""
 date:       2020-06-25 02:03:00
 author:     "yuanmie"
-header-img: "img/post-bg-os-metro.jpg"
+header-img: "img/post-bg-os-metro-prometheus.jpg"
 catalog: true
 tags:
     - prometheus
