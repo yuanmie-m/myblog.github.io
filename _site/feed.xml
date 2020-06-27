@@ -5,9 +5,100 @@
     <description>疯狂的学习.</description>
     <link>http://192.168.11.32:4000/</link>
     <atom:link href="http://192.168.11.32:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 27 Jun 2020 12:11:49 +0800</pubDate>
-    <lastBuildDate>Sat, 27 Jun 2020 12:11:49 +0800</lastBuildDate>
+    <pubDate>Sat, 27 Jun 2020 14:48:39 +0800</pubDate>
+    <lastBuildDate>Sat, 27 Jun 2020 14:48:39 +0800</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
+    
+      <item>
+        <title>高可用解决方案</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“高可用 on1. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;高可用&quot;&gt;高可用&lt;/h1&gt;
+
+</description>
+        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/27/%E9%AB%98%E5%8F%AF%E7%94%A8/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/%E9%AB%98%E5%8F%AF%E7%94%A8/</guid>
+        
+        <category>高可用</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>zabbix</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“zabbix on1. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;zabbix，是什么。&lt;/p&gt;
+
+&lt;h1 id=&quot;zabbix&quot;&gt;zabbix&lt;/h1&gt;
+
+</description>
+        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/27/zabbix/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/zabbix/</guid>
+        
+        <category>zabbix</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>nginx</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;nginx on1. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;nginx，搞懂反向代理和负载均衡！&lt;/p&gt;
+
+&lt;h1 id=&quot;反向代理&quot;&gt;反向代理&lt;/h1&gt;
+
+&lt;p&gt;反向代理怎么做？具体如何实现？&lt;/p&gt;
+
+&lt;h1 id=&quot;负载均衡&quot;&gt;负载均衡&lt;/h1&gt;
+
+&lt;p&gt;负载均衡怎么做？具体怎么实现？&lt;/p&gt;
+</description>
+        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/27/nginx/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/nginx/</guid>
+        
+        <category>nginx</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>jenkins</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;jenkins on1. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;jenkins&lt;/p&gt;
+
+&lt;h1 id=&quot;jenkins&quot;&gt;jenkins&lt;/h1&gt;
+
+</description>
+        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/27/jenkins/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/jenkins/</guid>
+        
+        <category>jenkins</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
     
       <item>
         <title>docker入门</title>
@@ -101,6 +192,28 @@ docker logs -f -t –since=”2020-06-27” –tail=100 CONTAINER_ID&lt;/p&gt;
         <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/dockerknowledge/</guid>
         
         <category>docker</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>ELK</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“ELK on1. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ELK，是什么。&lt;/p&gt;
+
+&lt;h1 id=&quot;elk&quot;&gt;ELK&lt;/h1&gt;
+
+</description>
+        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/27/ELK/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/ELK/</guid>
+        
+        <category>ELK</category>
         
         
         <category>Linux</category>
@@ -389,692 +502,6 @@ periodSeconds: 20&lt;/p&gt;
         <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/promethus-thinks/</guid>
         
         <category>prometheus</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>prometheus--架构原理</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“prometheus on1. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;prometheus是一个开源的监控系统和时序数据库，Prometheus使用Go语言开发。&lt;/p&gt;
-
-&lt;h1 id=&quot;架构图&quot;&gt;架构图&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&quot;https://mlog.club/api/img/proxy?url=https%3A%2F%2Fmmbiz.qpic.cn%2Fmmbiz_png%2FicdBCpcEToI9eliaV8MvxvhicN6V3EGVkpTZwxMNJ1r8aoupeBOzP3l7nYHFiahmibNrMIWibnX2Nk7iaFJjKEodg1TRQ%2F640%3Fwx_fmt%3Dpng&quot; alt=&quot;avatar&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://mlog.club/article/2966580&quot;&gt;图片来源&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;prometheus的组成：prometheus server，job epoerter（prometheus targets），service discovery，pushgateway，web UI，alertmanager&lt;/p&gt;
-
-&lt;h2 id=&quot;prometheus-server&quot;&gt;prometheus server&lt;/h2&gt;
-&lt;p&gt;prometheus server包括：retrieval，storage（tsdb），http server。&lt;/p&gt;
-
-&lt;p&gt;Prometheus Server：用于抓取和存储时间序列化数据，从job exporters中去拉去数据。&lt;/p&gt;
-
-&lt;h2 id=&quot;retrieval&quot;&gt;retrieval&lt;/h2&gt;
-&lt;p&gt;Retrieval：数据收集中心，收集自动发现的规则(自动发现的规则)，收集监控的指标(job exporter)，然后在传入tsdb中。&lt;/p&gt;
-
-&lt;h2 id=&quot;tsdb&quot;&gt;TSDB&lt;/h2&gt;
-&lt;p&gt;TSDB：时间序列数据库，将数据写入：HDD/SSD中&lt;/p&gt;
-
-&lt;h2 id=&quot;http-server&quot;&gt;http server&lt;/h2&gt;
-&lt;p&gt;http server：给一个接口，给alertmanager和grafana接口&lt;/p&gt;
-
-&lt;h2 id=&quot;service-discovery&quot;&gt;Service discovery&lt;/h2&gt;
-&lt;p&gt;Service discovery：服务自动发现。&lt;/p&gt;
-
-&lt;p&gt;主要有2种的服务发现:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;1.是直接基于k8s的源数据的自动发现：kubernetes_sd&lt;/li&gt;
-  &lt;li&gt;2.是基于文件自动发现，把自动发现规则写入file_sd文件中。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;二种方式的应用场景：&lt;/p&gt;
-
-&lt;p&gt;Kubernetes_sd：服务基于k8s的容器编排容器的容器云监控的自动发现。&lt;/p&gt;
-
-&lt;p&gt;File_sd：自动发现应用不在k8s中的自动发现，需要在文件中写入规则。&lt;/p&gt;
-
-&lt;h2 id=&quot;exporters&quot;&gt;exporters&lt;/h2&gt;
-&lt;p&gt;Job exporters（也叫prometheus targets）：要监控那些东西，是由它来拉取，相当于zabbix的agent，主动拉取数据的插件。多用。&lt;/p&gt;
-
-&lt;p&gt;教程中使用到的：kube-state-metric，node-exporter，cadvisor，blackbox-exporter&lt;/p&gt;
-
-&lt;p&gt;作用：&lt;/p&gt;
-
-&lt;p&gt;kube-state-metric：收集k8s基本状态信息，多少节点，多少pod，pod更新了多少版。关注于获取k8s各种资源的最新状态，如deployment或者daemonset。资源对象包括daemonset，deployment，job，namespace，node，pvc，pod_container，pod，replicaset，service，statefulset。&lt;/p&gt;
-
-&lt;p&gt;Node-exporter：收集k8s运算节点上的基础设施信息，运算节点还有多少内存，磁盘使用量，CPU使用量，网络IO等等（部署在所有运算节点上）。
-Prometheus提供的NodeExporter项目可以提取主机节点的关键度量指标，通过Kubernetes的DeamonSet模式可以在各主机节点上部署一个NodeExporter实例，实现对主机性能指标数据的监控。&lt;/p&gt;
-
-&lt;p&gt;cadvisor：监控容器内置使用资源的主要工具，收集当前节点上运行的所有容器的资源使用情况，每容器到底耗费了多少资源（内存，CPU）&lt;/p&gt;
-
-&lt;p&gt;Blackbox-exporter：判断容器是否存活等。&lt;/p&gt;
-
-&lt;h2 id=&quot;pushgateway&quot;&gt;Pushgateway&lt;/h2&gt;
-&lt;p&gt;Pushgateway：被动拉取数据的插件。少用。&lt;/p&gt;
-
-&lt;h2 id=&quot;altermanager&quot;&gt;Altermanager&lt;/h2&gt;
-&lt;p&gt;Altermanager：告警发送模块&lt;/p&gt;
-
-&lt;h2 id=&quot;prometheus-web-ui&quot;&gt;Prometheus web UI&lt;/h2&gt;
-&lt;p&gt;Prometheus web UI：界面化，也包含结合Grafana进行数据展示或告警发送&lt;/p&gt;
-
-&lt;h2 id=&quot;其他组件介绍&quot;&gt;其他组件介绍&lt;/h2&gt;
-&lt;p&gt;使用metric-server收集数据给k8s集群内使用，如kubectl,hpa,scheduler等&lt;/p&gt;
-
-&lt;p&gt;使用prometheus-operator部署prometheus，存储监控数据&lt;/p&gt;
-
-&lt;p&gt;使用kube-state-metrics收集k8s集群内资源对象数据&lt;/p&gt;
-
-&lt;p&gt;使用node_exporter收集集群中各节点的数据&lt;/p&gt;
-
-&lt;p&gt;使用prometheus收集apiserver，scheduler，controller-manager，kubelet组件数据&lt;/p&gt;
-</description>
-        <pubDate>Thu, 25 Jun 2020 10:03:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/2020/06/25/prometheus%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/prometheus%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/</guid>
-        
-        <category>prometheus</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>k8s架构原理</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“k8s on1. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;k8s详细学习看&lt;a href=&quot;https://kubernetes.io/zh/docs/home/&quot;&gt;官网&lt;/a&gt;，自己做一个归纳总结。&lt;/p&gt;
-
-&lt;h1 id=&quot;k8s入门&quot;&gt;k8s入门&lt;/h1&gt;
-
-&lt;p&gt;k8s的2个主要部分：master主控节点和node运算节点。&lt;/p&gt;
-
-&lt;p&gt;架构图：
-&lt;img src=&quot;https://imgcdn.chenyongjun.vip/2020/02/09/2.png&quot; alt=&quot;avatar&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;master-主控节点&quot;&gt;master-主控节点&lt;/h2&gt;
-
-&lt;p&gt;master包括：etcd，apiserver，scheduler，controller manager，Container runtime&lt;/p&gt;
-
-&lt;p&gt;各组件的作用：&lt;/p&gt;
-
-&lt;p&gt;etcd：保存集群的状态，go语言开发，raft算法实现。&lt;/p&gt;
-
-&lt;p&gt;apiserver：资源访问的唯一入口，用于认证、授权，API注册和发现机制&lt;/p&gt;
-
-&lt;p&gt;scheduler：资源调度，按照预选和优选调度将pod调度到合适的节点上。（还有污点和容忍的概念）&lt;/p&gt;
-
-&lt;p&gt;controller manager：维护集群的状态，如故障检测，自动扩展，滚动更新&lt;/p&gt;
-
-&lt;p&gt;container runtime：负责镜像管理及pod和容器的真正运行&lt;/p&gt;
-
-&lt;h2 id=&quot;node-运算节点&quot;&gt;node-运算节点&lt;/h2&gt;
-&lt;p&gt;node包括：kubelet，kube-proxy&lt;/p&gt;
-
-&lt;p&gt;各组件的作用：&lt;/p&gt;
-
-&lt;p&gt;kubelet：容器的生命周期（pending，running，seccessd，unknow，faild），同时也负责volume（CVI）和网络（CNI）插件&lt;/p&gt;
-
-&lt;p&gt;kube-proxy：为service提供cluser内部的网络代理和负载均衡（ingress的实现：
-traefik，ingress-nginx，hapoxy）&lt;/p&gt;
-
-&lt;h2 id=&quot;其他组件&quot;&gt;其他组件&lt;/h2&gt;
-&lt;p&gt;kube-dns：为集群提供dns服务，如coredns（域名访问及解析）&lt;/p&gt;
-
-&lt;p&gt;heapster：资源监控&lt;/p&gt;
-
-&lt;p&gt;dashboard：k8s的GUI界面&lt;/p&gt;
-
-&lt;p&gt;elk：日志收集&lt;/p&gt;
-
-&lt;p&gt;核心附件：&lt;/p&gt;
-
-&lt;p&gt;CNI网络插件：flannel/calico&lt;/p&gt;
-
-&lt;p&gt;服务发现用插件：coredns&lt;/p&gt;
-
-&lt;p&gt;服务暴露用插件：traefik&lt;/p&gt;
-
-&lt;p&gt;GUI管理插件：dashboard&lt;/p&gt;
-
-&lt;h2 id=&quot;各个组件的互相工作原理&quot;&gt;各个组件的互相工作原理&lt;/h2&gt;
-
-&lt;h3 id=&quot;如创建一个pod过程如下&quot;&gt;如创建一个pod，过程如下：&lt;/h3&gt;
-
-&lt;p&gt;1.用户发出一个命令，kubelet去创建pod、service等等，如：create，delete，apply等等。&lt;/p&gt;
-
-&lt;p&gt;2.apiserver将pod/service写入到etcd中。&lt;/p&gt;
-
-&lt;p&gt;3.scheduler检测到未绑定节点的pod，通过优选和预选，将pod调度到节点上。&lt;/p&gt;
-
-&lt;p&gt;4.kubelet检测到有新的pod调度过来，通过container runtime运行该pod。&lt;/p&gt;
-
-&lt;p&gt;5.kublet取到pod状态，并更新到apiserver中，apiserver在将信息写入etcd中。&lt;/p&gt;
-
-&lt;h3 id=&quot;删除一个pod过程如下&quot;&gt;删除一个pod，过程如下：&lt;/h3&gt;
-&lt;p&gt;1、apiserver handler执行了两次，第一次主要是修改Pod信息，设置DeletionTimestamp和DeletionGracePeriodSeconds信息，第二次去数据库etcd删除Pod信息；&lt;/p&gt;
-
-&lt;p&gt;2、kubelet通过检测到Pod内的资源已经完全释放之后，触发了第二次删除事件，且是强制删除Pod；&lt;/p&gt;
-
-&lt;p&gt;3、kubelet的DELETE操作其实监听到的是Pod的更新事件，Pod删除之后，执行的是REMOVE操作；&lt;/p&gt;
-
-&lt;p&gt;处理流程为：&lt;/p&gt;
-
-&lt;p&gt;客户端请求删除Pod–&amp;gt;apiserver更新Pod信息–&amp;gt;kubelet优雅释放Pod资源–&amp;gt;kubelet请求删除Pod–&amp;gt;apiserver删除etcd中Pod信息–&amp;gt;kubelet完成最终Pod的资源清理。
-交互简单理解：&lt;/p&gt;
-
-&lt;h2 id=&quot;控制器管理器&quot;&gt;控制器管理器&lt;/h2&gt;
-&lt;h3 id=&quot;deployment&quot;&gt;deployment&lt;/h3&gt;
-
-&lt;p&gt;作用：&lt;/p&gt;
-
-&lt;p&gt;创建一个pod和RC/RS（ReplicaSet）的一个声明式定义的方法.&lt;/p&gt;
-
-&lt;p&gt;应用场景：创建pod和RS，滚动升级和回滚应用，扩容和缩容，暂停和继续deployment&lt;/p&gt;
-
-&lt;p&gt;deployment的生命周期：progressing，complete，fail to progress&lt;/p&gt;
-
-&lt;h4 id=&quot;rcrsdp的作用及区别&quot;&gt;RC，RS，dp的作用及区别：&lt;/h4&gt;
-
-&lt;p&gt;RC（Replication Controller）：确保pod数量（多了删少了加），确保pod健康，弹性伸缩，滚动升级。&lt;/p&gt;
-
-&lt;p&gt;RS（Replica Set）：升级版的RC，用于保证与label selector匹配的pod数量维持在期望状态。&lt;/p&gt;
-
-&lt;p&gt;deployment：创建一个pod和RC/RS（ReplicaSet）的一个声明式定义的方法&lt;/p&gt;
-
-&lt;p&gt;区别：&lt;/p&gt;
-
-&lt;p&gt;1.基于的方式&lt;/p&gt;
-
-&lt;p&gt;RC只支持基于等式selector（env=dev或environment!=qa），但RS还支持新的，基于集合的selector（version in (v1.0, v2.0)或env notin (dev, qa)），这对复杂的运维管理很方便。&lt;/p&gt;
-
-&lt;p&gt;2、升级方式&lt;/p&gt;
-
-&lt;p&gt;RS不能使用kubectlrolling-update进行升级&lt;/p&gt;
-
-&lt;p&gt;kubectl rolling-update专用于rc&lt;/p&gt;
-
-&lt;p&gt;RS升级使用deployment或者kubectl replace命令&lt;/p&gt;
-
-&lt;h3 id=&quot;daemonset&quot;&gt;daemonset&lt;/h3&gt;
-&lt;p&gt;作用：DaemonSet保证在每个Node上都运行一个容器副本，常用来部署一些集群的日志、监控或者其他系统管理应用。&lt;/p&gt;
-
-&lt;p&gt;应用场景：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;日志收集，比如fluentd，logstash等&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;系统监控，比如Prometheus Node Exporter，collectd，New Relic agent，Ganglia gmond等&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;系统程序，比如kube-proxy, kube-dns, glusterd, ceph等&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;statefulset&quot;&gt;statefulset&lt;/h3&gt;
-&lt;p&gt;作用：为了解决有状态服务的问题&lt;/p&gt;
-
-&lt;p&gt;应用场景：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;稳定的持久化存储，即Pod重新调度后还是能访问到相同的持久化数据，基于PVC来实现&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;稳定的网络标志，即Pod重新调度后其PodName和HostName不变，基于Headless Service（即没有Cluster IP的Service）来实现&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;有序部署，有序扩展，即Pod是有顺序的，在部署或者扩展的时候要依据定义的顺序依次依次进行（即从0到N-1，在下一个Pod运行之前所有之前的Pod必须都是Running和Ready状态），基于init containers来实现&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;有序收缩，有序删除（即从N-1到0）&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;无状态的服务：deployment，RC，RS&lt;/p&gt;
-
-&lt;p&gt;有状态的服务：mysql，zookeeper，&lt;/p&gt;
-
-&lt;h4 id=&quot;无状态服务和有状态服务的含义及区别&quot;&gt;无状态服务和有状态服务的含义及区别？&lt;/h4&gt;
-&lt;p&gt;含义：&lt;/p&gt;
-
-&lt;p&gt;无状态服务：是指该服务运行的实例不会在本地存储需要持久化的数据，并且多个实例对于同一个请求响应的结果是完全一致的。（不存储）&lt;/p&gt;
-
-&lt;p&gt;有状态服务：是指该服务的实例可以将一部分数据随时进行备份，并且在创建一个新的有状态服务时，可以通过备份恢复这些数据，以达到数据持久化的目的。（存储并备份，新创建一个服务时，通过备份恢复数据）&lt;/p&gt;
-
-&lt;p&gt;区别：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;实例数量：无状态服务可以有一个或多个实例，因此支持两种服务容量调节模式；有状态服务只能有一个实例，不允许创建多个实例，因此也不支持服务容量调节模式。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;存储卷：无状态服务可以有存储卷，也可以没有，即使有也无法备份存储卷里面的数据；有状态服务必须要有存储卷，并且在创建服务时，必须指定给该存储卷分配的磁盘空间大小。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;数据存储：无状态服务运行过程中的所有数据（除日志和监控数据）都存在容器实例里的文件系统中，如果实例停止或者删除，则这些数据都将丢失，无法找回；而对于有状态服务，凡是已经挂载了存储卷的目录下的文件内容都可以随时进行备份，备份的数据可以下载，也可以用于恢复新的服务。但对于没有挂载卷的目录下的数据，仍然是无法备份和保存的，如果实例停止或者删除，这些非挂载卷里的文件内容同样会丢失。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;job&quot;&gt;job&lt;/h3&gt;
-&lt;p&gt;作用：处理短暂的一次性任务 (short lived one-off tasks)，即仅执行一次的任务。
-有以下几种job：&lt;/p&gt;
-
-&lt;p&gt;非并行job，固定结束次数的job，带有工作队列的并行job&lt;/p&gt;
-
-&lt;h3 id=&quot;cronjob&quot;&gt;cronjob&lt;/h3&gt;
-&lt;p&gt;作用：CronJob即定时任务&lt;/p&gt;
-&lt;h2 id=&quot;k8s中的3条网络&quot;&gt;k8s中的3条网络&lt;/h2&gt;
-&lt;p&gt;K8s中的网络
-&lt;a href=&quot;https://www.cnblogs.com/muzinan110/p/11105809.html&quot;&gt;参考&lt;/a&gt;,&lt;a href=&quot;https://www.cnblogs.com/linuxk/p/10517055.html&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;一个K8S集群包含是三个网络。&lt;/p&gt;
-
-&lt;p&gt;（1）node节点网络：各主机（Master、Node、ETCD等）自身所属的网络，地址配置在主机的网络接口，用于各主机之间的通信，又称为节点网络。&lt;/p&gt;
-
-&lt;p&gt;（2）Pod网络（容器之间，对内）：专用于Pod资源对象的网络，它是一个虚拟网络，用于为各Pod对象设定IP地址等网络参数，其地址配置在Pod中容器的网络接口上。Pod网络需要借助kubenet插件或CNI插件实现。
-（pod与pod之间的网络）&lt;/p&gt;
-
-&lt;p&gt;（3）Service网络（集群内的service网络，相对于pod来说是对外）：专用于Service资源对象的网络，它也是一个虚拟网络，用于为K8S集群之中的Service配置IP地址，
-但是该地址不会配置在任何主机或容器的网络接口上，而是通过Node上的kube-proxy配置为iptables或ipvs规则，从而将发往该地址的所有流量调度到后端的各Pod对象之
-上。
-（一组pod对外的暴露接口）&lt;/p&gt;
-
-&lt;h3 id=&quot;pod网络的实现flannelcalico等等&quot;&gt;pod网络的实现：flannel，calico等等&lt;/h3&gt;
-
-&lt;p&gt;flannel，calico的区别，优缺点？&lt;/p&gt;
-
-&lt;h3 id=&quot;flannel的三种模型&quot;&gt;flannel的三种模型：&lt;/h3&gt;
-
-&lt;p&gt;Flannel host-gw模型，flannel vxlan模型，flannel 直接路由模型。&lt;/p&gt;
-
-&lt;p&gt;跨主机通信的一个解决方案是Flannel，由CoreOS推出，支持3种实现：UDP、VXLAN、host-gw&lt;/p&gt;
-
-&lt;p&gt;udp模式：使用设备flannel.0进行封包解包，不是内核原生支持，上下文切换较大，性能非常差&lt;/p&gt;
-
-&lt;p&gt;vxlan模式：使用flannel.1进行封包解包，内核原生支持，性能较强&lt;/p&gt;
-
-&lt;p&gt;host-gw模式：无需flannel.1这样的中间设备，直接宿主机当作子网的下一跳地址，性能最强&lt;/p&gt;
-
-&lt;p&gt;host-gw的性能损失大约在10%左右，而其他所有基于VXLAN“隧道”机制 的网络方案，性能损失在20%~30%左右。&lt;/p&gt;
-
-&lt;h4 id=&quot;howt-gw模式的工作原理&quot;&gt;howt-gw模式的工作原理&lt;/h4&gt;
-
-&lt;p&gt;就是将每个Flannel子网的下一跳，设置成了该子网对应的宿主机的IP地址，也就是说，宿主机（host）充当了这条容器通信路径的“网关”（Gateway），这正是host-gw的含义。&lt;/p&gt;
-
-&lt;p&gt;Kube-proxy实现service的3种方式：userspace，iptables，ipvs&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://draveness.me/kubernetes-service/&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;区别优缺点：&lt;/p&gt;
-
-&lt;p&gt;1.userspace：调度pod网络和节点网络的时候用到大量的内核资源。&lt;/p&gt;
-
-&lt;p&gt;2.iptables：做一个nat映射，做负载均衡时：会时延，匹配时延和规则更新时延。可扩张性：当iptables数量非常大时，更新会非常慢。可用性：服务扩容/缩容时，iptables规则的刷新会导致连接断开，服务不可用。&lt;/p&gt;
-
-&lt;p&gt;3.ipvs：是在kernel模式下通过netfilter实现的，采用了hash table来存储规则，因此在规则较多的情况下，Ipvs相对iptables转发效率更高。ipvs也支持更多的LB（10种调度算法）算法。如果要设置Kube-proxy为ipvs模式，必须在操作系统中安装IPVS内核模块。
-ipvs有3种转发模式：DR，隧道和NAT模式
-&lt;a href=&quot;https://zhuanlan.zhihu.com/p/37230013&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;注意server和Ingress的区别：&lt;/p&gt;
-
-&lt;p&gt;service&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;在K8S的世界里，虽然每个pod都会被分配一个单独的IP地址，但这个IP地址会随着
-
-pod的销毁而消失。
-
-service就是用来解决这个问题的核心概念。
-
-一个service可以看作是一组提供相同服务的pod的对外访问接口（pod的对外访问接口），4层。
-
-service作用于哪些pod是通过标签选择器来定义的。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ingress&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ingress是K8S集群里工作在OSI网络参考模型下，第7层的应用，对外暴露的接口（服务的对外访问接口）。
-
-service只能进行L4流量调度，表现形式是ip+port
-
-Ingress则可以调度不同业务域、不同URL访问路径的业务流量。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;总结：service是一组pod对外的访问接口（userpase，iptables，ipvs去实现），4层：ip+port，协议+端口&lt;/p&gt;
-
-&lt;p&gt;ingress是服务暴露的接口，用于反向代理（traefik，nginx-ingress，harpoxy去实现），7层：url和ip+port都可以&lt;/p&gt;
-
-&lt;p&gt;4层：IOS网络参考模型第4层，传输层：TCP/UDP协议&lt;/p&gt;
-
-&lt;p&gt;7层：IOS网络参考模型第7层，应用层：http，https等协议&lt;/p&gt;
-</description>
-        <pubDate>Thu, 25 Jun 2020 10:03:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/2020/06/25/k8s-%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/k8s-%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/</guid>
-        
-        <category>k8s</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>jekyll+github的博客实现</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“start. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;使用jekyll+github部署自己的博客，并使用自定义域名访问。&lt;/p&gt;
-
-&lt;h1 id=&quot;jekyllgithub搭建&quot;&gt;jekyll+github搭建&lt;/h1&gt;
-&lt;p&gt;环境：&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 _posts]# &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/redhat-release
-
-CentOS Linux release 7.5.1804 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Core&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;安装ruby&quot;&gt;安装Ruby&lt;/h2&gt;
-
-&lt;p&gt;安装方法有很多种。&lt;/p&gt;
-
-&lt;p&gt;1.直接安装即可：&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ruby &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
-
-rvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.7.0 &lt;span class=&quot;nt&quot;&gt;--disable-binary&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;2.源码包安装，去&lt;a href=&quot;https://www.ruby-lang.org/zh_cn/&quot;&gt;官网&lt;/a&gt;下载。&lt;/p&gt;
-
-&lt;p&gt;然后解压，编译：./config &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install，默认安装在/usr/local目录下&lt;/p&gt;
-
-&lt;p&gt;查看ruby版本：ruby -v&lt;/p&gt;
-
-&lt;p&gt;设置ruby默认版本：rvm use 2.7.0 –default&lt;/p&gt;
-
-&lt;h2 id=&quot;配置bash_profile环境&quot;&gt;配置.bash_profile环境&lt;/h2&gt;
-
-&lt;p&gt;不搞这一步后面就有坑了，后面报错，可以先提前解决。&lt;/p&gt;
-
-&lt;p&gt;.bash_profile在vim ~/.bash_profile下&lt;/p&gt;
-
-&lt;p&gt;步骤如下：&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;git &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
-
-git clone https://github.com/Linuxbrew/brew.git ~/.linuxbrew（下载看个人网速）
-
-git clone https://github.com/Linuxbrew/homebrew-core ~/.linuxbrew/Library/Taps/homebrew（很久）
-
-vim /root/.bash_profile，添加下面内容：
-
-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.linuxbrew/bin:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;MANPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.linuxbrew/share/man:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$MANPATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;INFOPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.linuxbrew/share/info:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$INFOPATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-
-重新加载：source bash_profile
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h1 id=&quot;安装rvm&quot;&gt;安装rvm&lt;/h1&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gpg2 &lt;span class=&quot;nt&quot;&gt;--recv-keys&lt;/span&gt; 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-
-curl &lt;span class=&quot;nt&quot;&gt;-sSL&lt;/span&gt; https://get.rvm.io | bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; stable
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;注意，这一步报错：curl: (7) Failed connect to raw.githubusercontent.com:443; 拒绝连接&lt;/p&gt;
-
-&lt;p&gt;解决：&lt;/p&gt;
-
-&lt;p&gt;vim /etc/hosts添加如下内容即可&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;199.232.68.133 raw.githubusercontent.com
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;解析域名，可&lt;a href=&quot;https://blog.csdn.net/xt_123456/article/details/105884220?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-1&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;加载配置：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;source ~/.bashrc&lt;/li&gt;
-  &lt;li&gt;source ~/.bash_profile&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;修改 RVM 下载 Ruby 的源，到 Ruby China 的镜像:&lt;/p&gt;
-
-&lt;p&gt;echo “ruby_url=https://cache.ruby-china.com/pub/ruby” &amp;gt; ~/.rvm/user/db（报错也没事，后面用gem完成）&lt;/p&gt;
-
-&lt;p&gt;加载脚本：source /etc/profile.d/rvm.sh&lt;/p&gt;
-
-&lt;p&gt;检查一下是否安装正确：&lt;/p&gt;
-
-&lt;p&gt;rvm -v&lt;/p&gt;
-
-&lt;p&gt;rvm 1.22.17 (stable) by Wayne E. Seguin [https://rvm.io/]&lt;/p&gt;
-
-&lt;h2 id=&quot;安装gem&quot;&gt;安装gem&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://rubygems.org/releases&quot;&gt;gem官网&lt;/a&gt;，可以在上面看到你所安装的软件，依赖软件的版本。&lt;/p&gt;
-
-&lt;p&gt;(建议安装2.7.0)&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm requirements
-
-rvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.3.0
-
-rvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.7.0 &lt;span class=&quot;nt&quot;&gt;--disable-binary&lt;/span&gt;（推荐）
-
-设置ruby默认版本：rvm use 2.7.0 &lt;span class=&quot;nt&quot;&gt;--default&lt;/span&gt;
-
-检查：ruby &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;，gem &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h2 id=&quot;安装bundler&quot;&gt;安装bundler&lt;/h2&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h2 id=&quot;安装rails&quot;&gt;安装rails&lt;/h2&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;rails
-
-检查：rails &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h2 id=&quot;安装jekyll&quot;&gt;安装jekyll&lt;/h2&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll
- 
-检查：jekyll &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;hr /&gt;
-&lt;h2 id=&quot;大功告成&quot;&gt;大功告成！&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;启动jekyll指定一个ip&quot;&gt;启动jekyll，指定一个IP&lt;/h2&gt;
-
-&lt;p&gt;先创建一个blog，命令：jekyll new myblog&lt;/p&gt;
-
-&lt;p&gt;(用模板就先：bundle install)&lt;/p&gt;
-
-&lt;p&gt;然后进入到myblog目录下执行：bundle exec jekyll serve –watch –host=192.168.11.30&lt;/p&gt;
-
-&lt;p&gt;浏览器访问：192.168.11.30:40009&lt;/p&gt;
-
-&lt;p&gt;运行之后，它会加载自带的简单的配置文件。后面会下载一个做好的模板。&lt;/p&gt;
-
-&lt;h2 id=&quot;让git和jekyll交互&quot;&gt;让git和jekyll交互&lt;/h2&gt;
-
-&lt;p&gt;git的使用：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://segmentfault.com/a/1190000013705747&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;在git上创建一个learn仓库&lt;/p&gt;
-
-&lt;p&gt;在github上创建你的账号之后，到系统的/root/myblog目录下拉取仓库&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 myblog]# git clone https://github.com/yuanmie-m/learn.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;之后本地会多一个learn的目录&lt;/p&gt;
-
-&lt;p&gt;在learn内创建一个index.html文件，随便写一个内容&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 learn]# git add &lt;span class=&quot;nt&quot;&gt;--all&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 learn]# git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;initial commit&quot;&lt;/span&gt;
-
-
-添加邮箱：qq和163都可以，建议使用163
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 learn]# git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;yuanmie_m@163.com&quot;&lt;/span&gt;
-
-输入git的账号：
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 learn]# git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;yuanmie-m&quot;&lt;/span&gt;
-
-然后在commit
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 learn]# git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;initial commit&quot;&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 learn]# ll
-
-
-push代码到github上，就可以在github上看到index文件了
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 learn]# git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin master
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h2 id=&quot;使用jekyll模板来创建你的博客&quot;&gt;使用jekyll模板来创建你的博客&lt;/h2&gt;
-
-&lt;p&gt;下载一个模板，&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;网站&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;下载一个模板2步将这个模板应用起来：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;1.bundle install&lt;/li&gt;
-  &lt;li&gt;2.bundle exec jekyll serve –watch –host=192.168.11.30&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;将文件夹上传到/root目录，之后在安装相关插件：&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 airspace-jekyll-master]# bundle &lt;span class=&quot;nb&quot;&gt;install
-
-&lt;/span&gt;运行：
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@new-centos7 airspace-jekyll-master]# bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve &lt;span class=&quot;nt&quot;&gt;--watch&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--host&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.11.30
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;浏览器访问：192.168.11.30:4000&lt;/p&gt;
-
-&lt;p&gt;将你的代码上传到github之后，也可以用github直接域名访问：https://{GitHub用户名}.github.io&lt;/p&gt;
-
-&lt;h1 id=&quot;github的限制&quot;&gt;github的限制&lt;/h1&gt;
-&lt;p&gt;Github Pages 并不是无限存储和无限流量的静态站点服务，一些限制如下：
-内容存储不能超过1GB。
-每个月100GB流量带宽。
-每小时编译构建次数不超过10次。（在线修改重新编译并未发现这个限制）
-更多参看官方说明：
-&lt;a href=&quot;https://link.zhihu.com/?target=https%3A//help.github.com/articles/what-is-github-pages/%23usage-limits&quot;&gt;usage-limits&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;安装过程中出现的问题&quot;&gt;安装过程中出现的问题&lt;/h1&gt;
-&lt;p&gt;1.from /usr/local/rvm/gems/ruby-2.7.0/gems/bundler-2.1.4/lib/bundler/errors.rb:3:in `&amp;lt;top (required)&amp;gt;’
-解决：重新安装：rvm install 2.3.0
-设置ruby版本：rvm use 2.7.0 –default
-这里使用2.3.0了不报错，后面执行还是报错，要先安装下面的：jekyll-paginate。&lt;/p&gt;
-
-&lt;p&gt;2.Could not find gem ‘jekyll-paginate’ in any of the gem sources listed in your Gemfile
-解决：
-gem install jekyll-sitemap
-这里的坑，要安装jekyll-sitemap就要使用ruby-2.7.0，使用ruby-2.7.0编译bundler install就报错，最后的解决版本：先使用ruby-2.7.0去安装好 jekyll-sitemap，然后在设置ruby-2.3.0去编译bundler install，最后就可以使用bundler exec jekyll server了。。。。
-使用ruby-2.7.0编译bundler install就报错，不用ruby-2.7.0，那么jekyll-sitemap就按照不了。&lt;/p&gt;
-
-&lt;p&gt;3.error: RPC failed; result=18, HTTP code = 2009.00 KiB/s
-解决：
-git config –global http.postBuffer 1024288000
-git config –list&lt;/p&gt;
-
-&lt;h1 id=&quot;github-page自定义域名&quot;&gt;github page自定义域名&lt;/h1&gt;
-&lt;p&gt;2步完成，先总结在细说。
-1.先要有一个自己的域名，买好域名之后，配置DNS域名解析。
-2.添加一个CNAMD文件，里面写你的域名。&lt;/p&gt;
-&lt;h2 id=&quot;自己域名配置&quot;&gt;自己域名配置&lt;/h2&gt;
-&lt;p&gt;1.买域名
-先要有一个自己的域名，我去阿里云上面注册的，域名有很多类型，每个域名都有它的适合用途。
-就可以选择自己的，在搜索栏输入自己想的名字，即可查看。
-买好域名之后，各种身份认证，实名认证，我这里从提交到完成，不到半个小时，很快！&lt;/p&gt;
-
-&lt;p&gt;2.域名解析&lt;/p&gt;
-
-&lt;p&gt;买好域名之后，配置DNS域名解析。后面在域名解析检测一下。
-进入域名列表。
-添加域名（刚开始添加域名，DNS服务器状态不是正常的）：
-之后点进去，配置域名解析。
-添加记录，主要是2条记录，记录值：是你的：仓库名.github.io&lt;/p&gt;
-
-&lt;p&gt;添加好之后等。等到域名解析变为正常才行。可以使用阿里云上面的工具，检测是不是正常。&lt;/p&gt;
-
-&lt;p&gt;同时也可以在你的博客系统上面检测。&lt;/p&gt;
-
-&lt;h2 id=&quot;使用阿里云免费ssl证书实现全站https化&quot;&gt;使用阿里云免费SSL证书实现全站HTTPS化&lt;/h2&gt;
-&lt;p&gt;购买免费ssl证书，直接在阿里云搜：DigiCert 免费版 SSL。
-然后认证即可。&lt;/p&gt;
-
-&lt;h2 id=&quot;github上设置&quot;&gt;github上设置&lt;/h2&gt;
-&lt;p&gt;1）添加一个CNAMD文件（大写，无后缀名）
-里面写你的域名，例如我的：yuanmie.co
-本地写好上传CNAMD文件。&lt;/p&gt;
-
-&lt;p&gt;2）在setting中配置
-https://yuanmie-m.github.io/test.github.io/.&lt;/p&gt;
-
-&lt;p&gt;（后面可以保存一个https:）&lt;/p&gt;
-
-&lt;p&gt;然后配置：&lt;/p&gt;
-
-&lt;p&gt;浏览器访问：yuanmie.co就是访问https://yuanmie-m.github.io/test.github.io了&lt;/p&gt;
-</description>
-        <pubDate>Thu, 25 Jun 2020 10:03:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/2020/06/25/jekyll+github/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/jekyll+github/</guid>
-        
-        <category>jekyll</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>k8s-流水线交互</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“k8s on2. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;程序员写好代码，是如何到由代码变成k8s的容器内应用的。&lt;/p&gt;
-
-&lt;p&gt;全部过程是怎么样的，一定要清楚！必须掌握。&lt;/p&gt;
-
-&lt;h1 id=&quot;过程&quot;&gt;过程&lt;/h1&gt;
-&lt;p&gt;一个比较典型的 DevOps 的流水线过程是：项目开始开发时，用 VS  Code 开发代码，然后把代码推送到 GitLab 里存储，通过 GitLab 的 hook 使 Jenkins 执行一些 CI 的过程，比如做一些单元测试，构建 Docker  image，再把这个 Docker  image 调用 helm 部署到开发环境或测试环境中。在测试环境里通过 Jenkins 触发一个集成测试的功能，完成后就可以把它部署到生产环境里，通过 Kubernetes addon 的方式，把 Prometheus、Grafana 等监控组件部署到集群里，就实现了一整套从 CI 到 CD 的监控过程。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://static.geekbang.org/infoq/5c427b515869e.png?imageView2/0/w/800&quot; alt=&quot;avatar&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;（图片来源&lt;a href=&quot;https://www.infoq.cn/article/LtsomODk*whKEevGUhUp&quot;&gt;地址&lt;/a&gt;）&lt;/p&gt;
-
-&lt;p&gt;每一步的细节都应该懂！每一个环节都是一门技术，加油吧！&lt;/p&gt;
-
-&lt;h1 id=&quot;vs-codegitlab&quot;&gt;vs code–&amp;gt;gitlab&lt;/h1&gt;
-
-&lt;p&gt;创建SSH KEY密钥，上传到gitlab的key里面即可互通。&lt;/p&gt;
-
-&lt;h1 id=&quot;gitlabjenkins&quot;&gt;gitlab–&amp;gt;jenkins&lt;/h1&gt;
-
-&lt;p&gt;也是通过密钥+gitlab的项目地址通信。&lt;/p&gt;
-
-&lt;h1 id=&quot;jenkinsdocker&quot;&gt;jenkins–&amp;gt;docker&lt;/h1&gt;
-
-&lt;p&gt;jenkins将代码打包成war包或者其他的。&lt;/p&gt;
-
-&lt;p&gt;docker运行war包，docker reload &amp;gt; xx.war。然后打一个标签，推送到私有仓库，比如harbor私有 仓库。&lt;/p&gt;
-
-&lt;h1 id=&quot;dockerk8s的pod&quot;&gt;docker–&amp;gt;k8s的pod&lt;/h1&gt;
-
-&lt;p&gt;k8s通过创建一个pod，dp.yaml里面配置具体的镜像，从harbor私有仓库中拉取，然后运行为一个pod。&lt;/p&gt;
-
-&lt;p&gt;至此，代码到k8s中的pod完成。其中 涉及到的技术比较多，加油学！&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 25 Jun 2020 10:03:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/2020/06/25/cicd-k8s-%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%BA%A4%E4%BA%92/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/cicd-k8s-%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%BA%A4%E4%BA%92/</guid>
-        
-        <category>k8s</category>
         
         
       </item>
