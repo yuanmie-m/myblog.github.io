@@ -5,9 +5,98 @@
     <description>疯狂的学习.</description>
     <link>http://192.168.11.32:4000/</link>
     <atom:link href="http://192.168.11.32:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 29 Jun 2020 22:13:31 +0800</pubDate>
-    <lastBuildDate>Mon, 29 Jun 2020 22:13:31 +0800</lastBuildDate>
+    <pubDate>Tue, 30 Jun 2020 00:09:15 +0800</pubDate>
+    <lastBuildDate>Tue, 30 Jun 2020 00:09:15 +0800</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
+    
+      <item>
+        <title>zabbix监控TCP11种状态</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;zabbix—第4篇. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;TCP有11种状态：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;客户端：SYN_SENT，FIN_WAIT1，FIN_WAIT2，CLOSING，TIME_WAIT 
+
+服务端：LISTEN，SYN_RCVD，CLOSE_WAIT，LAST_ACK 
+
+共有的：CLOSED，ESTABLISHED
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;也可以分为4步：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.查看TCP状态
+
+2.配置监控项文件并测试
+
+3.创建模板
+
+4.设置触发器
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;查看tcp状态&quot;&gt;查看TCP状态&lt;/h1&gt;
+&lt;p&gt;在agent客户端端：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@zabbix-agent-35 zabbix_agentd.d]# netstat -ant|grep -c TIME_WAIT
+46
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;在zabbix服务端：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@zabbix-server cloudalert]# netstat -ant|grep -c LISTEN
+10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;配置监控项并测试&quot;&gt;配置监控项并测试&lt;/h1&gt;
+
+&lt;p&gt;在agent客户端/etc/zabbix/zabbix_agentd.d目录下创建tcp.conf文件。&lt;/p&gt;
+
+&lt;p&gt;在/etc/zabbix/scripts/创建tcp_status.sh，配置文件放在我github的&lt;a href=&quot;https://github.com/yuanmie-m/myblog.github.io/tree/master/shell&quot;&gt;shell文件夹中&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;重启agent：systemctl restart zabbix-agent&lt;/p&gt;
+
+&lt;p&gt;在zabbix server端测试：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@zabbix-server cloudalert]# zabbix_get -s 192.168.11.35 -k tcp.status[timewait]
+63
+
+[root@zabbix-server cloudalert]# zabbix_get -s 192.168.11.35 -k tcp.status[listen]
+8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;创建模板&quot;&gt;创建模板&lt;/h1&gt;
+&lt;p&gt;创建模板：
+&lt;img src=&quot;/img/zabbix-tcp创建模板.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;配置监控项信息：
+&lt;img src=&quot;/img/zabbix-tcp监控项信息.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;创建图形：
+&lt;img src=&quot;/img/zabbix-tcp图形.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在主机中添加tcp 11 status模板，等几分钟，数据就出来了。
+&lt;img src=&quot;/img/zabbix-tcp监控成功.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;设置触发器&quot;&gt;设置触发器&lt;/h1&gt;
+
+&lt;p&gt;创建触发器：
+&lt;img src=&quot;/img/zabbix-tcp创建触发器.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;配置触发器参数信息：
+&lt;img src=&quot;/img/zabbix-tcp创建触发器信息.png&quot; alt=&quot;&quot; /&gt;
+添加好就可以在触发器内查看到了，当超过这个值时触发报警。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 29 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/29/zabbix%E7%9B%91%E6%8E%A7TCP11%E7%A7%8D%E7%8A%B6%E6%80%81/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/29/zabbix%E7%9B%91%E6%8E%A7TCP11%E7%A7%8D%E7%8A%B6%E6%80%81/</guid>
+        
+        <category>zabbix</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
     
       <item>
         <title>zabbix监控系统</title>
@@ -170,13 +259,15 @@ Waiting: nginx 请求处理完成，正在等待下一请求指令的连接。
 在访问效率很高，请求很快被处理完毕的情况下，Waiting 数比较多是正常的。如果 reading + writing 数较多，则说明并发访问量很大，正在处理过程中
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;zabbix监控nginx3步搞定。&lt;/p&gt;
+&lt;p&gt;zabbix监控nginx4步。&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.修改nginx.conf配置文件
 
 2.自定义监控项并测试
 
 3.导入模板/自己写也可以
+
+4.设置触发器
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;修改nginxconf文件&quot;&gt;修改nginx.conf文件&lt;/h1&gt;
@@ -247,10 +338,12 @@ Waiting: nginx 请求处理完成，正在等待下一请求指令的连接。
 &lt;p&gt;配置监控项图形：
 &lt;img src=&quot;/img/nginx_status图形.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;添加完图形之后，就算完成了，可以去查看数据，刚添加好，需要等几分钟。&lt;/p&gt;
+&lt;p&gt;添加完图形之后，在zabbix上选择主机将nginx status模板加入就算完成了，可以去查看数据，刚添加好，需要等几分钟。&lt;/p&gt;
 
 &lt;p&gt;成功数据如下：
 &lt;img src=&quot;/img/nginx_status成功.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;设置触发器&quot;&gt;设置触发器&lt;/h1&gt;
 </description>
         <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
         <link>http://192.168.11.32:4000/linux/2020/06/27/zabbix%E7%9B%91%E6%8E%A7nginx/</link>
@@ -442,9 +535,9 @@ linux上常用工具：iostat -x，sar
 
 &lt;p&gt;&lt;a href=&quot;https://cloud.tencent.com/developer/article/1004358&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;中间件&quot;&gt;中间件&lt;/h2&gt;
+&lt;h2 id=&quot;中间件及tcp&quot;&gt;中间件及TCP&lt;/h2&gt;
 
-&lt;p&gt;nginx，mysql，java，tomcat，php，redis&lt;/p&gt;
+&lt;p&gt;nginx，mysql，java，tomcat，php，redis，TCP&lt;/p&gt;
 
 &lt;p&gt;nginx&lt;/p&gt;
 
@@ -464,6 +557,15 @@ linux上常用工具：iostat -x，sar
 &lt;p&gt;redis&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;链接客户数，链接从库数，阻塞数，使用内存，执行命令每分钟等等
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;TCP&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;客户端：SYN_SENT，FIN_WAIT1，FIN_WAIT2，CLOSING，TIME_WAIT 
+
+服务端：LISTEN，SYN_RCVD，CLOSE_WAIT，LAST_ACK 
+
+共有的：CLOSED，ESTABLISHED
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/trecn001/article/details/83786577&quot;&gt;参考1&lt;/a&gt;
@@ -706,44 +808,6 @@ docker logs -f -t –since=”2020-06-27” –tail=100 CONTAINER_ID&lt;/p&gt;
         <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
         <link>http://192.168.11.32:4000/linux/2020/06/27/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
         <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
-        
-        <category>docker</category>
-        
-        
-        <category>Linux</category>
-        
-      </item>
-    
-      <item>
-        <title>docker累积</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“docker—第2篇. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;docker的一些累积，持续更新。&lt;/p&gt;
-
-&lt;h1 id=&quot;docker的安装&quot;&gt;docker的安装&lt;/h1&gt;
-
-&lt;p&gt;安装方法有很多种，一种简单的方法：&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://get.docker.com | bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; docker &lt;span class=&quot;nt&quot;&gt;--mirror&lt;/span&gt; Aliyun。快速！
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h1 id=&quot;docker的默认&quot;&gt;docker的默认&lt;/h1&gt;
-
-&lt;p&gt;docker有哪些默认的配置？记性不好了，记录记录，以便忘记的时候拿来看。&lt;/p&gt;
-
-&lt;h2 id=&quot;docker默认存储位置&quot;&gt;docker默认存储位置&lt;/h2&gt;
-&lt;p&gt;Docker默认存储位置在/var/lib/docker&lt;/p&gt;
-
-&lt;h2 id=&quot;docker默认配置文件&quot;&gt;docker默认配置文件&lt;/h2&gt;
-&lt;p&gt;ubuntu 中的位置是：/etc/default/docker&lt;/p&gt;
-
-&lt;p&gt;centos 中的位置是：/etc/sysconfig/docker&lt;/p&gt;
-
-&lt;h1 id=&quot;docker-compose&quot;&gt;docker compose&lt;/h1&gt;
-</description>
-        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/linux/2020/06/27/dockerknowledge/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/dockerknowledge/</guid>
         
         <category>docker</category>
         

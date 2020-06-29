@@ -227,13 +227,15 @@ Waiting: nginx 请求处理完成，正在等待下一请求指令的连接。
 在访问效率很高，请求很快被处理完毕的情况下，Waiting 数比较多是正常的。如果 reading + writing 数较多，则说明并发访问量很大，正在处理过程中
 </code></pre></div></div>
 
-<p>zabbix监控nginx3步搞定。</p>
+<p>zabbix监控nginx4步。</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.修改nginx.conf配置文件
 
 2.自定义监控项并测试
 
 3.导入模板/自己写也可以
+
+4.设置触发器
 </code></pre></div></div>
 
 <h1 id="修改nginxconf文件">修改nginx.conf文件</h1>
@@ -304,10 +306,12 @@ Waiting: nginx 请求处理完成，正在等待下一请求指令的连接。
 <p>配置监控项图形：
 <img src="/img/nginx_status图形.png" alt="" /></p>
 
-<p>添加完图形之后，就算完成了，可以去查看数据，刚添加好，需要等几分钟。</p>
+<p>添加完图形之后，在zabbix上选择主机将nginx status模板加入就算完成了，可以去查看数据，刚添加好，需要等几分钟。</p>
 
 <p>成功数据如下：
 <img src="/img/nginx_status成功.png" alt="" /></p>
+
+<h1 id="设置触发器">设置触发器</h1>
 
 
                 <hr style="visibility: hidden;">
@@ -427,7 +431,7 @@ Waiting: nginx 请求处理完成，正在等待下一请求指令的连接。
                             
         				
                             
-                				<a href="/tags/#zabbix" title="zabbix" rel="3">
+                				<a href="/tags/#zabbix" title="zabbix" rel="4">
                                     zabbix
                                 </a>
                             

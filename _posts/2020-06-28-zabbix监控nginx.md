@@ -32,13 +32,15 @@ tags:
 
     在访问效率很高，请求很快被处理完毕的情况下，Waiting 数比较多是正常的。如果 reading + writing 数较多，则说明并发访问量很大，正在处理过程中
 
-zabbix监控nginx3步搞定。
+zabbix监控nginx4步。
 
     1.修改nginx.conf配置文件
 
     2.自定义监控项并测试
 
     3.导入模板/自己写也可以
+    
+    4.设置触发器
 
 # 修改nginx.conf文件
 在被监控的主机上，配置nginx.conf，添加如下内容：
@@ -110,7 +112,10 @@ zabbix监控nginx3步搞定。
 配置监控项图形：
 ![](/img/nginx_status图形.png)
 
-添加完图形之后，就算完成了，可以去查看数据，刚添加好，需要等几分钟。
+添加完图形之后，在zabbix上选择主机将nginx status模板加入就算完成了，可以去查看数据，刚添加好，需要等几分钟。
 
 成功数据如下：
 ![](/img/nginx_status成功.png)
+
+
+# 设置触发器

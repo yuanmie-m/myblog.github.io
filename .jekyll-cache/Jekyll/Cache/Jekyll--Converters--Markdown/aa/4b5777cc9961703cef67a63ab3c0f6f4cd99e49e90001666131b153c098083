@@ -1,0 +1,121 @@
+I".<blockquote>
+  <p>“zabbix—第1篇. ”</p>
+</blockquote>
+
+<p>zabbix，是什么？能帮我们做什么？</p>
+
+<h1 id="zabbix">zabbix</h1>
+
+<p>zabbix能监控什么？</p>
+
+<p>监控的指标是那些？</p>
+
+<p>如何定义超过什么范围就触发报警？</p>
+
+<p>如何报警让相关负责人知道？</p>
+
+<h2 id="系统">系统</h2>
+
+<p>CPU，内存(memory)，网络(network)，磁盘(io)，进程等</p>
+
+<p>CPU</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usr&lt;=70%, sys&lt;=35%, usr+sys&lt;=70%（应用程序可用内存/系统物理内存 &lt;= 70%）
+
+linux上常用工具：top，vmstat
+</code></pre></div></div>
+
+<p>内存</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>si == so == 0 可用空间&gt;=30%
+
+linux上常用工具：vmstat 1;free; /proc/meminfo
+</code></pre></div></div>
+
+<p>网络</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>udp：缓冲区不挤压, 无丢包 tcp：重传率
+
+linux上常用工具：netstat -lunp; netstat -su; /proc/net/snmp
+</code></pre></div></div>
+
+<p>磁盘</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iowait% &lt; 20%
+
+linux上常用工具：iostat -x，sar
+</code></pre></div></div>
+
+<p><a href="https://cloud.tencent.com/developer/article/1004358">参考</a></p>
+
+<h2 id="中间件及tc">中间件及TC</h2>
+
+<p>nginx，mysql，java，tomcat，php，redis，TCP</p>
+
+<p>nginx</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>状态码，吞吐量，并发连接数，并发连接数详细统计(包括读取请求，处理请求和发送响应)等等
+</code></pre></div></div>
+
+<p>mysql</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>流量统计，并发连接数（包括最大允许连接数，实际最大连接数，当前连接数，活跃连接数，缓存连接数等等）
+</code></pre></div></div>
+
+<p>tomcat</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jvm内存，tomcat请求数，网络流量统计，处理时间(最大处理时间，平均处理时间)等等
+</code></pre></div></div>
+
+<p>redis</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>链接客户数，链接从库数，阻塞数，使用内存，执行命令每分钟等等
+</code></pre></div></div>
+
+<p>TCP</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>客户端：SYN_SENT，FIN_WAIT1，FIN_WAIT2，CLOSING，TIME_WAIT 
+
+服务端：LISTEN，SYN_RCVD，CLOSE_WAIT，LAST_ACK 
+
+共有的：CLOSED，ESTABLISHED
+</code></pre></div></div>
+
+<p><a href="https://blog.csdn.net/trecn001/article/details/83786577">参考1</a>
+<a href="https://blog.csdn.net/smooth00/article/details/63689012">参考2</a></p>
+
+<h1 id="zabbix的安装">zabbix的安装</h1>
+<p><a href="https://www.zabbix.com/documentation/4.0/zh/manual">官网</a></p>
+
+<p><a href="https://www.cnblogs.com/yaoyaojcy/p/9884130.html">参考-zabbix4.0安装</a>，非常的详细。</p>
+
+<p>默认登录账号密码：Admin/zabbix</p>
+<h1 id="zabbix的监控模式">zabbix的监控模式</h1>
+<p>zabbix收集数据分为主动和被动两种模式：</p>
+
+<p>主动模式被动模式：默认为zabbix-agent被动模式。</p>
+
+<p>主动模式与被动模式主要是站在zabbix-agent身份来说。</p>
+
+<p>1.被动模式（zabbix-server轮询检测zabbix-agent）</p>
+
+<p>2.主动模式（zabbix-agent主动上报给zabbix-server）优</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>主动：agent请求server获取主动的监控项列表，并主动将监控项内需要检测的数据提交给server/proxy（agent主动获取监控项列表，并主动提交数据给server/proxy）
+
+被动：server向agent请求获取监控项的数据，agent返回数据。
+</code></pre></div></div>
+
+<p>zabbix主动模式与被动模式选择</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.当（Queue）队列中有大量的延迟监控项
+
+2.当监控主机超过300+ ,建议使用主动模式
+</code></pre></div></div>
+
+<p>zabbix的上限：1000台</p>
+
+<h1 id="zabbix报警通知">zabbix报警通知</h1>
+
+<p>企业微信，邮箱（163邮箱，QQ邮箱），电话告警（onealert）</p>
+:ET

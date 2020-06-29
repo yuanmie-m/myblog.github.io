@@ -1,0 +1,110 @@
+I"�<blockquote>
+  <p>zabbix—第3篇. ”</p>
+</blockquote>
+
+<p>做nginx监控之前先搞明白nginx_status：
+<img src="/img/nginx_status.png" alt="" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Activeconnections:对后端发起的活动连接数；
+
+server accepts 76：nginx 总共处理了76个连接；
+
+handled：成功创建了76次握手；
+
+requests：总共处理了107请求。
+
+Reading：nginx读取客户端的header数；
+
+Writing: nginx 返回给客户端的header数；
+
+Waiting: nginx 请求处理完成，正在等待下一请求指令的连接。
+
+在访问效率很高，请求很快被处理完毕的情况下，Waiting 数比较多是正常的。如果 reading + writing 数较多，则说明并发访问量很大，正在处理过程中
+</code></pre></div></div>
+
+<p>zabbix监控nginx4步。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.修改nginx.conf配置文件
+
+2.自定义监控项并测试
+
+3.导入模板/自己写也可以
+
+4.设置触发器
+</code></pre></div></div>
+
+<h1 id="修改nginxconf文件">修改nginx.conf文件</h1>
+<p>在被监控的主机上，配置nginx.conf，添加如下内容：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        location /nginx_status <span class="o">{</span>
+          stub_status on<span class="p">;</span>
+          access_log off<span class="p">;</span>
+        <span class="o">}</span>
+</code></pre></div></div>
+<p><img src="/img/nginx_config节点上.png" alt="" /></p>
+
+<p>加载nginx：nginx -s reload</p>
+
+<p>浏览器访问：https://IP/nginx_status
+<img src="/img/nginx_status.png" alt="" /></p>
+
+<h1 id="自定义监控项并测试">自定义监控项并测试</h1>
+<p>在zabbix的agent节点上：</p>
+
+<p>1.在/etc/zabbix/scripts目录下创建脚本：nginx_monitor.sh（脚本我放在我github的shell目录下）</p>
+
+<p>赋与执行权限：chmod +x nginx_monitor.sh</p>
+
+<p>2.在/etc/zabbix/zabbix_agentd.d/目录下创建配置文件：nginx_monitor.conf</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UserParameter=nginx_status[*],/etc/zabbix/scripts/nginx_monitor.sh $1
+</code></pre></div></div>
+
+<p>3.重启agent：systemctl restart zabbix-agent</p>
+
+<p>在zabbix的服务端测试：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[active]
+1
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[reading]
+0
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[writing]
+1
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[waiting]
+0
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[accepts]
+76
+
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[handled]
+76
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[requests]
+107
+</code></pre></div></div>
+
+<h1 id="导入模板自己写也可以">导入模板/自己写也可以</h1>
+<p>创建nginx status模板：
+<img src="/img/nginx_config创建模板.png" alt="" /></p>
+
+<p>创建nginx status监控项：
+<img src="/img/nginx_status创建监控项.png" alt="" /></p>
+
+<p>监控项内容：
+<img src="/img/nginx_status监控项内容.png" alt="" />
+根据nginx_monitor.sh脚本，里面有7项内容。依次完成如下配置：
+<img src="/img/nginx_status7项监控项.png" alt="" /></p>
+
+<p>配置监控项图形：
+<img src="/img/nginx_status图形.png" alt="" /></p>
+
+<p>添加完图形之后，在zabbix上选择主机将nginx status模板加入就算完成了，可以去查看数据，刚添加好，需要等几分钟。</p>
+
+<p>成功数据如下：
+<img src="/img/nginx_status成功.png" alt="" /></p>
+
+<h1 id="设置触发器">设置触发器</h1>
+:ET

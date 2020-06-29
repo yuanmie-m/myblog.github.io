@@ -253,9 +253,9 @@ linux上常用工具：iostat -x，sar
 
 <p><a href="https://cloud.tencent.com/developer/article/1004358">参考</a></p>
 
-<h2 id="中间件">中间件</h2>
+<h2 id="中间件及tcp">中间件及TCP</h2>
 
-<p>nginx，mysql，java，tomcat，php，redis</p>
+<p>nginx，mysql，java，tomcat，php，redis，TCP</p>
 
 <p>nginx</p>
 
@@ -275,6 +275,15 @@ linux上常用工具：iostat -x，sar
 <p>redis</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>链接客户数，链接从库数，阻塞数，使用内存，执行命令每分钟等等
+</code></pre></div></div>
+
+<p>TCP</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>客户端：SYN_SENT，FIN_WAIT1，FIN_WAIT2，CLOSING，TIME_WAIT 
+
+服务端：LISTEN，SYN_RCVD，CLOSE_WAIT，LAST_ACK 
+
+共有的：CLOSED，ESTABLISHED
 </code></pre></div></div>
 
 <p><a href="https://blog.csdn.net/trecn001/article/details/83786577">参考1</a>
@@ -433,7 +442,7 @@ linux上常用工具：iostat -x，sar
                             
         				
                             
-                				<a href="/tags/#zabbix" title="zabbix" rel="3">
+                				<a href="/tags/#zabbix" title="zabbix" rel="4">
                                     zabbix
                                 </a>
                             
