@@ -5,9 +5,370 @@
     <description>疯狂的学习.</description>
     <link>http://192.168.11.32:4000/</link>
     <atom:link href="http://192.168.11.32:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 27 Jun 2020 22:52:24 +0800</pubDate>
-    <lastBuildDate>Sat, 27 Jun 2020 22:52:24 +0800</lastBuildDate>
+    <pubDate>Mon, 29 Jun 2020 22:13:31 +0800</pubDate>
+    <lastBuildDate>Mon, 29 Jun 2020 22:13:31 +0800</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
+    
+      <item>
+        <title>zabbix监控系统</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;zabbix—第2篇. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;部署好zabbix之后开始添加主机。添加主机的方式：zabbix-agent，如果有大量的主机，建议使用ansible。&lt;/p&gt;
+
+&lt;h1 id=&quot;安装agent&quot;&gt;安装agent&lt;/h1&gt;
+&lt;p&gt;agent的安装方式有2种。&lt;/p&gt;
+
+&lt;p&gt;1.使用tar.gz源码包安装&lt;a href=&quot;https://www.zabbix.com/cn/download_agents&quot;&gt;下载链接&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2.使用yum安装&lt;a href=&quot;https://www.zabbix.com/cn/download&quot;&gt;yum安装&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;我这里使用yum安装。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.rpm -Uvh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-2.el7.noarch.rpm
+
+2.yum clean all
+
+3.yum install zabbix-agent -y
+
+4.启动：systemctl start zabbix-agent。设置开机启动：systemctl enable zabbix-agent
+
+5.查看端口：ss -lunpt|grep zabbix
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;修改agent的一些配置，yum安装的插件配置文件都在/etc目录下。&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    vim /etc/zabbix/zabbix_agentd.conf
+
+    修改：
+    &lt;span class=&quot;nv&quot;&gt;LogFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/var/log/zabbix/zabbix_agentd.log
+    &lt;span class=&quot;nv&quot;&gt;LogFileSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
+    &lt;span class=&quot;nv&quot;&gt;Server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.11.133
+    &lt;span class=&quot;nv&quot;&gt;ServerActive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.11.133
+    &lt;span class=&quot;nv&quot;&gt;Hostname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;zabbix-agent-35
+
+    server和serveractive是你的zabbix服务端地址，hostname最好填容易区分的。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;添加主机监控系统的cpu等&quot;&gt;添加主机，监控系统的cpu等&lt;/h1&gt;
+
+&lt;p&gt;安装好agent之后，登录zabbix的web界面。&lt;/p&gt;
+
+&lt;p&gt;添加主机：
+&lt;img src=&quot;/img/zabbix-创建主机.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;添加主机信息：
+&lt;img src=&quot;/img/zabbix-添加主机信息.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;添加模板：
+&lt;img src=&quot;/img/zabbix-添加模板.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;添加成功：
+&lt;img src=&quot;/img/zabbix-添加成功.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;查看主机信息：
+&lt;img src=&quot;/img/zabbix-查看主机信息.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;设置监控项&quot;&gt;设置监控项&lt;/h1&gt;
+
+&lt;p&gt;监控项，就是你要监控什么。&lt;/p&gt;
+
+&lt;p&gt;触发器，就是设置一个值（监控项），超过这个值就触发，在报警通知相关人员。&lt;/p&gt;
+
+&lt;p&gt;创建监控项
+&lt;img src=&quot;/img/zabbix-创建监控项.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;设置监控项
+&lt;img src=&quot;/img/zabbix-设置监控项.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;查看监控项：
+&lt;img src=&quot;/img/zabbix-查看监控项.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;设置触发器&quot;&gt;设置触发器&lt;/h1&gt;
+&lt;p&gt;创建触发器：
+&lt;img src=&quot;/img/zabbix-创建触发器.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;设置触发器配置
+&lt;img src=&quot;/img/zabbix-设置触发器配置.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;查看触发器
+&lt;img src=&quot;/img/zabbix-查看触发器.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;添加图形
+&lt;img src=&quot;/img/zabbix-触发器自定义图形.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;报警功能的实现&quot;&gt;报警功能的实现&lt;/h1&gt;
+&lt;p&gt;报警的方式：企业微信，邮箱（163邮箱/QQ邮箱），电话（onealert）&lt;/p&gt;
+
+&lt;p&gt;创建动作，触发器示警大于等于就触发：
+&lt;img src=&quot;/img/zabbix报警-创建动作.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;配置163邮箱告警：
+&lt;img src=&quot;/img/zabbix报警-创建动作配置.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;/img/zabbix报警-创建操作.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;/img/zabbix报警-创建恢复操作.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;配置报警媒介：
+&lt;img src=&quot;/img/zabbix报警-配置报警媒介.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;测试，停止agent,我这里的QQ邮箱关掉了。
+&lt;img src=&quot;/img/zabbix报警-发送成功.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;163邮箱查看：
+&lt;img src=&quot;/img/zabbix报警-163邮箱收件.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;电话通知实现&quot;&gt;电话通知实现&lt;/h2&gt;
+&lt;p&gt;我这里的实现是用onealert实现的，配置报警媒介与配置1163邮箱差不多，先去&lt;a href=&quot;http://www.onealert.com/&quot;&gt;睿象云&lt;/a&gt;注册一个账号。免费版有试用的天数，过了就无法电话通知，需要买了。&lt;/p&gt;
+
+&lt;p&gt;注册好之后，需要在zabbix的服务端安装它们的插件。
+&lt;img src=&quot;/img/zabbix-onealert的实现配置.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;安装过程也比较简单，上面点击zabbix之后，就进入安装教程，按照教程安装即可，注意：appkey的值，写入zabbix的动作时用到。&lt;/p&gt;
+
+&lt;p&gt;安装完成之后，需先添加团队。
+&lt;img src=&quot;/img/zabbix-onealert添加团队及成员.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;添加分派策略
+&lt;img src=&quot;/img/zabbix-onealert添加分派策略.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;通知策略：
+&lt;img src=&quot;/img/zabbix-onealert通知策略.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 29 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/29/zabbix%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F+%E5%91%8A%E8%AD%A6%E9%80%9A%E7%9F%A5/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/29/zabbix%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F+%E5%91%8A%E8%AD%A6%E9%80%9A%E7%9F%A5/</guid>
+        
+        <category>zabbix</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>zabbix监控nginx</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;zabbix—第3篇. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;做nginx监控之前先搞明白nginx_status：
+&lt;img src=&quot;/img/nginx_status.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Activeconnections:对后端发起的活动连接数；
+
+server accepts 76：nginx 总共处理了76个连接；
+
+handled：成功创建了76次握手；
+
+requests：总共处理了107请求。
+
+Reading：nginx读取客户端的header数；
+
+Writing: nginx 返回给客户端的header数；
+
+Waiting: nginx 请求处理完成，正在等待下一请求指令的连接。
+
+在访问效率很高，请求很快被处理完毕的情况下，Waiting 数比较多是正常的。如果 reading + writing 数较多，则说明并发访问量很大，正在处理过程中
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;zabbix监控nginx3步搞定。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.修改nginx.conf配置文件
+
+2.自定义监控项并测试
+
+3.导入模板/自己写也可以
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;修改nginxconf文件&quot;&gt;修改nginx.conf文件&lt;/h1&gt;
+&lt;p&gt;在被监控的主机上，配置nginx.conf，添加如下内容：&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        location /nginx_status &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          stub_status on&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+          access_log off&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/img/nginx_config节点上.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;加载nginx：nginx -s reload&lt;/p&gt;
+
+&lt;p&gt;浏览器访问：https://IP/nginx_status
+&lt;img src=&quot;/img/nginx_status.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;自定义监控项并测试&quot;&gt;自定义监控项并测试&lt;/h1&gt;
+&lt;p&gt;在zabbix的agent节点上：&lt;/p&gt;
+
+&lt;p&gt;1.在/etc/zabbix/scripts目录下创建脚本：nginx_monitor.sh（脚本我放在我github的shell目录下）&lt;/p&gt;
+
+&lt;p&gt;赋与执行权限：chmod +x nginx_monitor.sh&lt;/p&gt;
+
+&lt;p&gt;2.在/etc/zabbix/zabbix_agentd.d/目录下创建配置文件：nginx_monitor.conf&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;UserParameter=nginx_status[*],/etc/zabbix/scripts/nginx_monitor.sh $1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;3.重启agent：systemctl restart zabbix-agent&lt;/p&gt;
+
+&lt;p&gt;在zabbix的服务端测试：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[active]
+1
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[reading]
+0
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[writing]
+1
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[waiting]
+0
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[accepts]
+76
+
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[handled]
+76
+
+[root@zabbix-server cloudalert]#  zabbix_get -s 192.168.11.35 -k nginx_status[requests]
+107
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;导入模板自己写也可以&quot;&gt;导入模板/自己写也可以&lt;/h1&gt;
+&lt;p&gt;创建nginx status模板：
+&lt;img src=&quot;/img/nginx_config创建模板.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;创建nginx status监控项：
+&lt;img src=&quot;/img/nginx_status创建监控项.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;监控项内容：
+&lt;img src=&quot;/img/nginx_status监控项内容.png&quot; alt=&quot;&quot; /&gt;
+根据nginx_monitor.sh脚本，里面有7项内容。依次完成如下配置：
+&lt;img src=&quot;/img/nginx_status7项监控项.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;配置监控项图形：
+&lt;img src=&quot;/img/nginx_status图形.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;添加完图形之后，就算完成了，可以去查看数据，刚添加好，需要等几分钟。&lt;/p&gt;
+
+&lt;p&gt;成功数据如下：
+&lt;img src=&quot;/img/nginx_status成功.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/27/zabbix%E7%9B%91%E6%8E%A7nginx/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/zabbix%E7%9B%91%E6%8E%A7nginx/</guid>
+        
+        <category>zabbix</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>OSI网络参考模型</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;网络第1篇之OSI参考模型. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;做的中间件运维，一定离不开nginx/tomcat，做nginx就一定会有反向代理和负载均衡。&lt;/p&gt;
+
+&lt;h1 id=&quot;osi参考模型&quot;&gt;OSI参考模型&lt;/h1&gt;
+&lt;p&gt;一个图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://timgsa.baidu.com/timg?image&amp;amp;quality=80&amp;amp;size=b9999_10000&amp;amp;sec=1593321941404&amp;amp;di=4693a4993fa7a33363718dbafa5c7be8&amp;amp;imgtype=0&amp;amp;src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D2396422661%2C2994864451%26fm%3D214%26gp%3D0.jpg&quot; alt=&quot;avatar&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;搞懂每一层都干什么事，原理是什么，如何去实现。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;应用层&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;各种应用程序协议，如：HTTP、FTP、SMTP、POP3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;表示层&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;信息的语法语义以及它们的关联，如加密解密、转换翻译、压缩解压。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;会话层&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;不同机器上的用户之间建立及管理会话。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;传输层&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;接受上一层的数据，在必要的时候把数据进行分割，并讲这些数据交给网络层，且保证这些数据段有效到达对端。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;网络层&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;控制子网的运行，如逻辑编制、分组传输、路由选择
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;数据链路层&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;物理选址，同时将原始比特流转变为逻辑传输路线。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;物理层&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;机械、电子、定时接口通信信道上的原始比特流传输。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;各层传输的基本单位&quot;&gt;各层传输的基本单位&lt;/h2&gt;
+
+&lt;p&gt;应用层的PDU 称为数据&lt;/p&gt;
+
+&lt;p&gt;传输层的PDU 称为数据段&lt;/p&gt;
+
+&lt;p&gt;网络层的PDU 称为数据包&lt;/p&gt;
+
+&lt;p&gt;数据链路层的PDU 称为帧&lt;/p&gt;
+
+&lt;p&gt;物理层的PDU 称为比特（位）&lt;/p&gt;
+
+&lt;h2 id=&quot;各层对应的设备&quot;&gt;各层对应的设备&lt;/h2&gt;
+
+&lt;p&gt;应用层：应用程序&lt;/p&gt;
+
+&lt;p&gt;表示层：编码、转化，界面与二进制互相转换的地方&lt;/p&gt;
+
+&lt;p&gt;会话层：提供单工(Simplex)、半双工(Half duplex)、全双工(Full duplex)三种通信模式的服务。我们平时所知的NFS，RPC,X Windows等都工作在这一层。&lt;/p&gt;
+
+&lt;p&gt;传输层：端到端的逻辑链接。三次握手，四次挥手。&lt;/p&gt;
+
+&lt;p&gt;网络层：IP地址/路由器&lt;/p&gt;
+
+&lt;p&gt;数据链路层：负责准备物理传输，CRC校验，错误通知，网络拓扑，流控等。我们所熟知的MAC地址和交换机都工作在这一层。&lt;/p&gt;
+
+&lt;p&gt;传输层：O1O1O1比特流&lt;/p&gt;
+
+&lt;p&gt;总结：&lt;/p&gt;
+
+&lt;p&gt;网线，集线器－－－－物理层&lt;/p&gt;
+
+&lt;p&gt;网卡，网桥－－－－数据链路&lt;/p&gt;
+
+&lt;p&gt;路由器－－－－－网络层&lt;/p&gt;
+
+&lt;h1 id=&quot;l4层代理l7层代理&quot;&gt;L4层代理/L7层代理&lt;/h1&gt;
+
+&lt;p&gt;L2层：根据数据链路层MAC地址完成数据交换&lt;/p&gt;
+
+&lt;p&gt;L3层：根据网络层IP地址完成数据交换&lt;/p&gt;
+
+&lt;p&gt;L4层，在传输层，使用IP+port转发&lt;/p&gt;
+
+&lt;p&gt;L7层，在应用层，使用HTTP协议，也可以IP+port。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/06/27/web%E7%BD%91%E7%BB%9COSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/web%E7%BD%91%E7%BB%9COSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</guid>
+        
+        <category>网络</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
     
       <item>
         <title>高可用解决方案</title>
@@ -30,19 +391,122 @@
       </item>
     
       <item>
-        <title>zabbix</title>
+        <title>zabbix简介</title>
         <description>&lt;blockquote&gt;
   &lt;p&gt;“zabbix—第1篇. ”&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;zabbix，是什么。&lt;/p&gt;
+&lt;p&gt;zabbix，是什么？能帮我们做什么？&lt;/p&gt;
 
 &lt;h1 id=&quot;zabbix&quot;&gt;zabbix&lt;/h1&gt;
 
+&lt;p&gt;zabbix能监控什么？&lt;/p&gt;
+
+&lt;p&gt;监控的指标是那些？&lt;/p&gt;
+
+&lt;p&gt;如何定义超过什么范围就触发报警？&lt;/p&gt;
+
+&lt;p&gt;如何报警让相关负责人知道？&lt;/p&gt;
+
+&lt;h2 id=&quot;系统&quot;&gt;系统&lt;/h2&gt;
+
+&lt;p&gt;CPU，内存(memory)，网络(network)，磁盘(io)，进程等&lt;/p&gt;
+
+&lt;p&gt;CPU&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;usr&amp;lt;=70%, sys&amp;lt;=35%, usr+sys&amp;lt;=70%（应用程序可用内存/系统物理内存 &amp;lt;= 70%）
+
+linux上常用工具：top，vmstat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;内存&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;si == so == 0 可用空间&amp;gt;=30%
+
+linux上常用工具：vmstat 1;free; /proc/meminfo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;网络&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;udp：缓冲区不挤压, 无丢包 tcp：重传率
+
+linux上常用工具：netstat -lunp; netstat -su; /proc/net/snmp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;磁盘&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;iowait% &amp;lt; 20%
+
+linux上常用工具：iostat -x，sar
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cloud.tencent.com/developer/article/1004358&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;中间件&quot;&gt;中间件&lt;/h2&gt;
+
+&lt;p&gt;nginx，mysql，java，tomcat，php，redis&lt;/p&gt;
+
+&lt;p&gt;nginx&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;状态码，吞吐量，并发连接数，并发连接数详细统计(包括读取请求，处理请求和发送响应)等等
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;mysql&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;流量统计，并发连接数（包括最大允许连接数，实际最大连接数，当前连接数，活跃连接数，缓存连接数等等）
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;tomcat&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jvm内存，tomcat请求数，网络流量统计，处理时间(最大处理时间，平均处理时间)等等
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;redis&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;链接客户数，链接从库数，阻塞数，使用内存，执行命令每分钟等等
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/trecn001/article/details/83786577&quot;&gt;参考1&lt;/a&gt;
+&lt;a href=&quot;https://blog.csdn.net/smooth00/article/details/63689012&quot;&gt;参考2&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;zabbix的安装&quot;&gt;zabbix的安装&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.zabbix.com/documentation/4.0/zh/manual&quot;&gt;官网&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/yaoyaojcy/p/9884130.html&quot;&gt;参考-zabbix4.0安装&lt;/a&gt;，非常的详细。&lt;/p&gt;
+
+&lt;p&gt;默认登录账号密码：Admin/zabbix&lt;/p&gt;
+&lt;h1 id=&quot;zabbix的监控模式&quot;&gt;zabbix的监控模式&lt;/h1&gt;
+&lt;p&gt;zabbix收集数据分为主动和被动两种模式：&lt;/p&gt;
+
+&lt;p&gt;主动模式被动模式：默认为zabbix-agent被动模式。&lt;/p&gt;
+
+&lt;p&gt;主动模式与被动模式主要是站在zabbix-agent身份来说。&lt;/p&gt;
+
+&lt;p&gt;1.被动模式（zabbix-server轮询检测zabbix-agent）&lt;/p&gt;
+
+&lt;p&gt;2.主动模式（zabbix-agent主动上报给zabbix-server）优&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;主动：agent请求server获取主动的监控项列表，并主动将监控项内需要检测的数据提交给server/proxy（agent主动获取监控项列表，并主动提交数据给server/proxy）
+
+被动：server向agent请求获取监控项的数据，agent返回数据。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;zabbix主动模式与被动模式选择&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.当（Queue）队列中有大量的延迟监控项
+
+2.当监控主机超过300+ ,建议使用主动模式
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;zabbix的上限：1000台&lt;/p&gt;
+
+&lt;h1 id=&quot;zabbix报警通知&quot;&gt;zabbix报警通知&lt;/h1&gt;
+
+&lt;p&gt;企业微信，邮箱（163邮箱，QQ邮箱），电话告警（onealert）&lt;/p&gt;
 </description>
         <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/linux/2020/06/27/zabbix/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/zabbix/</guid>
+        <link>http://192.168.11.32:4000/linux/2020/06/27/zabbix%E7%AE%80%E4%BB%8B/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/zabbix%E7%AE%80%E4%BB%8B/</guid>
         
         <category>zabbix</category>
         
@@ -285,238 +749,6 @@ docker logs -f -t –since=”2020-06-27” –tail=100 CONTAINER_ID&lt;/p&gt;
         
         
         <category>Linux</category>
-        
-      </item>
-    
-      <item>
-        <title>ELK</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“ELK—第1篇. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;ELK，是什么。&lt;/p&gt;
-
-&lt;h1 id=&quot;elk&quot;&gt;ELK&lt;/h1&gt;
-
-</description>
-        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/linux/2020/06/27/ELK/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/ELK/</guid>
-        
-        <category>ELK</category>
-        
-        
-        <category>Linux</category>
-        
-      </item>
-    
-      <item>
-        <title>jekyll之_posts</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“jekyll—第2篇. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;首先感谢大佬&lt;a href=&quot;https://github.com/Huxpro/huxpro.github.io&quot;&gt;Huxpro&lt;/a&gt;做的模板，非常喜欢，风格也简约，blog的管理也非常方便。&lt;/p&gt;
-
-&lt;p&gt;先知道安装，可以参考我的另一篇，把坑都填好了。运行起来之后，在看jekyll的目录结构，搞清楚每一个文档是干什么的。&lt;/p&gt;
-
-&lt;h2 id=&quot;_posts文件&quot;&gt;_posts文件&lt;/h2&gt;
-
-&lt;p&gt;这里放的就是你的文章了。文件格式很重要，必须符合：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-TITLE.MARKUP&lt;/code&gt;。The permalinks可以在文章中自己定制，但是数据和标记语言都是根据文件名来确定的。&lt;/p&gt;
-
-&lt;h2 id=&quot;内容格式及修饰&quot;&gt;内容格式及修饰&lt;/h2&gt;
-
-&lt;p&gt;分为2部分，yaml头文件和内容&lt;/p&gt;
-
-&lt;p&gt;1.yaml头文件的格式，这个比较简单&lt;/p&gt;
-
-&lt;p&gt;2.具体内容&lt;/p&gt;
-
-&lt;p&gt;拿一篇文章来说，举个例子体现出用了什么东西。&lt;/p&gt;
-
-&lt;p&gt;最喜欢的一部修真小说，从初中接触到大学毕业一直看，看了7遍，可以说里面的每一个场景都记得，就拿里面的一些东西来举例，顺便也做个例子。&lt;/p&gt;
-
-&lt;p&gt;标题格式：### 内容&lt;/p&gt;
-
-&lt;h3 id=&quot;隔一行和不隔一行的区别&quot;&gt;隔一行和不隔一行的区别：&lt;/h3&gt;
-
-&lt;p&gt;玉符现，天地乱，虚无出，七界哭。逆天子，万灭徒，相逢日，七界无。&lt;/p&gt;
-
-&lt;p&gt;夜月斩，夜月斩，太玄山上，黄河之畔。得之无意间，几许回忆在心田。
-太玄山，天地间，修真几许为神仙？少年心，贪尘缘，狂剑纵横为红颜！&lt;/p&gt;
-
-&lt;h3 id=&quot;链接格式&quot;&gt;链接格式&lt;/h3&gt;
-
-&lt;p&gt;内容[]+()链接，在英文键盘下输入&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://baike.baidu.com/item/%E4%B8%83%E7%95%8C%E4%BC%A0%E8%AF%B4%E6%AD%A3%E4%BC%A0&quot;&gt;七界传说-百度百科&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;列表格式&quot;&gt;列表格式&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;述不清，道不明，世间最烦是感情！&lt;/li&gt;
-  &lt;li&gt;见着怨，不见念，最难割舍最难断，是缘是孽，如何分辨？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;字体格式&quot;&gt;字体格式&lt;/h3&gt;
-
-&lt;p&gt;字体加颜色：
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;百世轮回，千世转变，沧海桑田，我心不变。&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;字体加粗：
-&lt;strong&gt;如此星辰如此月，结伴携手月下行。&lt;/strong&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 25 Jun 2020 18:16:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/2020/06/25/jekyll%E4%B9%8Bpost/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/jekyll%E4%B9%8Bpost/</guid>
-        
-        <category>jekyll</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>k8s一些思考</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“k8s—第3篇. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;记录k8s的问题&lt;/p&gt;
-
-&lt;h1 id=&quot;证书&quot;&gt;证书&lt;/h1&gt;
-&lt;p&gt;一个k8s集群，最少有6套证书。&lt;/p&gt;
-
-&lt;p&gt;ca根证书，etcd，client，apiserver，kubelet，kube-proxy&lt;/p&gt;
-
-&lt;p&gt;证书签发插件有：cfssl，openssl等等&lt;/p&gt;
-
-&lt;h1 id=&quot;pod的探针&quot;&gt;pod的探针&lt;/h1&gt;
-
-&lt;p&gt;在学pod探针之前得先知道pod生命周期&lt;/p&gt;
-
-&lt;h2 id=&quot;pod生命周期&quot;&gt;pod生命周期&lt;/h2&gt;
-
-&lt;p&gt;首先说一下pod的生命周期：pending，running，succeeded，faild，unknown.&lt;/p&gt;
-
-&lt;p&gt;挂起（Pending）：Pod 已被 Kubernetes 系统接受，但有一个或者多个容器镜像尚未创建。等待时间包括调度 Pod 的时间和通过网络下载镜像的时间，这可能需要花点时间。&lt;/p&gt;
-
-&lt;p&gt;运行中（Running）：该 Pod 已经绑定到了一个节点上，Pod 中所有的容器都已被创建。至少有一个容器正在运行，或者正处于启动或重启状态。&lt;/p&gt;
-
-&lt;p&gt;成功（Succeeded）：Pod 中的所有容器都被成功终止，并且不会再重启。&lt;/p&gt;
-
-&lt;p&gt;失败（Failed）：Pod 中的所有容器都已终止了，并且至少有一个容器是因为失败终止。也就是说，容器以非0状态退出或者被系统终止。&lt;/p&gt;
-
-&lt;p&gt;未知（Unknown）：因为某些原因无法取得 Pod 的状态，通常是因为与 Pod 所在主机通信失败。&lt;/p&gt;
-
-&lt;h2 id=&quot;三种探针&quot;&gt;三种探针&lt;/h2&gt;
-&lt;p&gt;存活探针/探测器（liveness）：看容器什么时候要重启.&lt;/p&gt;
-
-&lt;p&gt;就绪探针/探测器（rediness）：看一组容器的pod是否准备好接受流量.&lt;/p&gt;
-
-&lt;p&gt;启动探测器：看容器什么时候重启的.&lt;/p&gt;
-
-&lt;p&gt;每次探测都将获得以下三种结果之一：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;成功：容器通过了诊断。&lt;/li&gt;
-  &lt;li&gt;失败：容器未通过诊断。&lt;/li&gt;
-  &lt;li&gt;未知：诊断失败，因此不会采取任何行动。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;存活探针的3种使用方式&quot;&gt;存活探针的3种使用方式：&lt;/h3&gt;
-&lt;p&gt;1）.使用存活命令查看：cat /tmp/health，是0就健康，非0就不健康，就会被杀死重启。&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;livenessProbe:
-exec:
-  command:
-    &lt;ul&gt;
-      &lt;li&gt;cat&lt;/li&gt;
-      &lt;li&gt;/tmp/healthy
-initialDelaySeconds: 5&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;periodSeconds: 5&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;periodSeconds 规定kubelet要每隔5秒执行一次liveness probe。&lt;/p&gt;
-
-&lt;p&gt;initialDelaySeconds 告诉kubelet在第一次执行probe之前要的等待5秒钟。&lt;/p&gt;
-
-&lt;p&gt;2).http get请求：[200,400)之间就是存活。&lt;/p&gt;
-
-&lt;p&gt;livenessProbe:
-    httpGet:
-      path: /healthz
-      port: 8080
-      httpHeaders:
-        - name: X-Custom-Header
-          value: Awesome
-    initialDelaySeconds: 3
-    periodSeconds: 3&lt;/p&gt;
-
-&lt;p&gt;ivenessProbe 指定kubelet需要每隔3秒执行一次liveness probe。&lt;/p&gt;
-
-&lt;p&gt;initialDelaySeconds 指定kubelet在该执行第一次探测之前需要等待3秒钟。&lt;/p&gt;
-
-&lt;p&gt;3）tcp套接字：能连上就是存活的。&lt;/p&gt;
-
-&lt;p&gt;readinessProbe:
-tcpSocket:
-	port: 8080
-initialDelaySeconds: 5
-periodSeconds: 10
-livenessProbe:
-tcpSocket:
-	port: 8080
-initialDelaySeconds: 15
-periodSeconds: 20&lt;/p&gt;
-
-&lt;p&gt;同时使用了readiness和liveness probe。 容器启动后5秒钟，kubelet将发送第一个readiness probe。 这将尝试连接到端口8080上的goproxy容器。如果探测成功，则该pod将被标记为就绪。Kubelet将每隔10秒钟执行一次该检查。&lt;/p&gt;
-
-&lt;p&gt;除了readiness probe之外，该配置还包括liveness probe。 容器启动15秒后，kubelet将运行第一个liveness probe。 就像readiness probe一样，这将尝试连接到goproxy容器上的8080端口。如果liveness probe失败，容器将重新启动。&lt;/p&gt;
-&lt;h3 id=&quot;启动探测器&quot;&gt;启动探测器&lt;/h3&gt;
-&lt;p&gt;有时候，会有一些现有的应用程序在启动时需要较多的初始化时间。要不影响对引起探测死锁的快速响应，这种情况下，设置存活探测参数是要技巧的。技巧就是使用一个命令来设置启动探测，针对HTTP 或者 TCP 检测，可以通过设置 failureThreshold * periodSeconds 参数来保证有足够长的时间应对糟糕情况下的启动时间。&lt;/p&gt;
-&lt;h2 id=&quot;怎么看pod中的容器是否健康&quot;&gt;怎么看Pod中的容器是否健康&lt;/h2&gt;
-&lt;p&gt;status 属性里面有一个conditions字段记录了容器状态，其中 ：&lt;/p&gt;
-
-&lt;p&gt;type: Ready=True 表示Pod已经准备就绪，切已经加入了Service的负载均衡当中&lt;/p&gt;
-
-&lt;p&gt;type: ContainersReady=True表示所有Pod中所有容器都通过了健康检查（如有），并全部准备就绪&lt;/p&gt;
-&lt;h2 id=&quot;k8s是怎么进行服务注册的&quot;&gt;k8s是怎么进行服务注册的&lt;/h2&gt;
-&lt;p&gt;Pod启动后会加载当前环境所有Service信息，以便不同Pod根据Service名进行通信&lt;/p&gt;
-
-&lt;h2 id=&quot;各层负载均衡&quot;&gt;各层负载均衡&lt;/h2&gt;
-&lt;p&gt;二层负载均衡：基于MAC地址的二层负载均衡。&lt;/p&gt;
-
-&lt;p&gt;三层负载均衡：基于IP地址的负载均衡。&lt;/p&gt;
-
-&lt;p&gt;四层负载均衡：基于IP+端口的负载均衡。&lt;/p&gt;
-
-&lt;p&gt;七层负载均衡：基于URL等应用层信息的负载均衡。&lt;/p&gt;
-
-&lt;p&gt;上面四层服务发现讲的主要是k8s原生的kube-proxy方式。K8s关于服务的暴露主要是通过NodePort方式，通过绑定minion主机的某个端口，然后进行pod的请求转发和负载均衡，但这种方式有下面的缺陷：&lt;/p&gt;
-
-&lt;p&gt;Service可能有很多个，如果每个都绑定一个node主机端口的话，主机需要开放外围的端口进行服务调用，管理混乱。无法应用很多公司要求的防火墙规则。
-理想的方式是通过一个外部的负载均衡器，绑定固定的端口，比如80，然后根据域名或者服务名向后面的Service ip转发，Nginx很好的解决了这个需求，但问题是如果有的心得服务加入，如何去修改Nginx的配置，并且加载这些配置？Kubernetes给出的方案就是Ingress。这是一个基于7层的方案。&lt;/p&gt;
-&lt;h2 id=&quot;说说你对容器的理解&quot;&gt;说说你对容器的理解&lt;/h2&gt;
-&lt;p&gt;容器的理解：&lt;/p&gt;
-
-&lt;p&gt;应用部署在linux系统上和部署在容器上有什么区别？&lt;/p&gt;
-&lt;h2 id=&quot;如何对容器的限额&quot;&gt;如何对容器的限额&lt;/h2&gt;
-&lt;p&gt;比如说限制容器最大的CPU为16G，如何配置&lt;/p&gt;
-&lt;h2 id=&quot;k8s-的多主之间如何工作&quot;&gt;k8s 的多主之间如何工作&lt;/h2&gt;
-
-&lt;h2 id=&quot;k8s-一台节点unknown会是什么原因&quot;&gt;k8s 一台节点unknown会是什么原因&lt;/h2&gt;
-
-&lt;h2 id=&quot;docker运行一个容器之后无缘无故退出会是什么原因&quot;&gt;docker运行一个容器之后无缘无故退出会是什么原因&lt;/h2&gt;
-
-&lt;h2 id=&quot;有一个容器应用一直自动重启你如何去处理&quot;&gt;有一个容器（应用）一直自动重启，你如何去处理&lt;/h2&gt;
-</description>
-        <pubDate>Thu, 25 Jun 2020 10:03:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/2020/06/25/ks8-thinks/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/2020/06/25/ks8-thinks/</guid>
-        
-        <category>k8s</category>
-        
         
       </item>
     

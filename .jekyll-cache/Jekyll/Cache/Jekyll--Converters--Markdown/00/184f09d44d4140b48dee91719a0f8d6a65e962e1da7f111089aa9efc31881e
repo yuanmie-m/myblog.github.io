@@ -1,0 +1,94 @@
+I"u<blockquote>
+  <p>网络第1篇之OSI参考模型. ”</p>
+</blockquote>
+
+<p>做的中间件运维，一定离不开nginx/tomcat，做nginx就一定会有反向代理和负载均衡。</p>
+
+<h1 id="osi参考模型">OSI参考模型</h1>
+<p>一个图。</p>
+
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593321941404&amp;di=4693a4993fa7a33363718dbafa5c7be8&amp;imgtype=0&amp;src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D2396422661%2C2994864451%26fm%3D214%26gp%3D0.jpg" alt="avatar" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">搞懂每一层都干什么事，原理是什么，如何去实现。</code></p>
+
+<p>应用层</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>各种应用程序协议，如：HTTP、FTP、SMTP、POP3
+</code></pre></div></div>
+
+<p>表示层</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>信息的语法语义以及它们的关联，如加密解密、转换翻译、压缩解压。
+</code></pre></div></div>
+
+<p>会话层</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>不同机器上的用户之间建立及管理会话。
+</code></pre></div></div>
+
+<p>传输层</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>接受上一层的数据，在必要的时候把数据进行分割，并讲这些数据交给网络层，且保证这些数据段有效到达对端。
+</code></pre></div></div>
+
+<p>网络层</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>控制子网的运行，如逻辑编制、分组传输、路由选择
+</code></pre></div></div>
+
+<p>数据链路层</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>物理选址，同时将原始比特流转变为逻辑传输路线。
+</code></pre></div></div>
+
+<p>物理层</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>机械、电子、定时接口通信信道上的原始比特流传输。
+</code></pre></div></div>
+
+<h2 id="各层传输的基本单位">各层传输的基本单位</h2>
+
+<p>应用层的PDU 称为数据</p>
+
+<p>传输层的PDU 称为数据段</p>
+
+<p>网络层的PDU 称为数据包</p>
+
+<p>数据链路层的PDU 称为帧</p>
+
+<p>物理层的PDU 称为比特（位）</p>
+
+<h2 id="各层对应的设备">各层对应的设备</h2>
+
+<p>应用层：应用程序</p>
+
+<p>表示层：编码、转化，界面与二进制互相转换的地方</p>
+
+<p>会话层：提供单工(Simplex)、半双工(Half duplex)、全双工(Full duplex)三种通信模式的服务。我们平时所知的NFS，RPC,X Windows等都工作在这一层。</p>
+
+<p>传输层：端到端的逻辑链接。三次握手，四次挥手。</p>
+
+<p>网络层：IP地址/路由器</p>
+
+<p>数据链路层：负责准备物理传输，CRC校验，错误通知，网络拓扑，流控等。我们所熟知的MAC地址和交换机都工作在这一层。</p>
+
+<p>传输层：O1O1O1比特流</p>
+
+<p>总结：</p>
+
+<p>网线，集线器－－－－物理层</p>
+
+<p>网卡，网桥－－－－数据链路</p>
+
+<p>路由器－－－－－网络层</p>
+
+<h1 id="l4层代理l7层代理">L4层代理/L7层代理</h1>
+
+<p>L2层：根据数据链路层MAC地址完成数据交换</p>
+
+<p>L3层：根据网络层IP地址完成数据交换</p>
+
+<p>L4层，在传输层，使用IP+port转发</p>
+
+<p>L7层，在应用层，使用HTTP协议，也可以IP+port。</p>
+:ET
