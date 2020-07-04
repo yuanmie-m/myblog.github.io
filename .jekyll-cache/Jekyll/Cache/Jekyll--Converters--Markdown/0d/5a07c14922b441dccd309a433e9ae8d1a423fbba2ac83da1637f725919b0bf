@@ -1,0 +1,30 @@
+I"�<blockquote>
+  <p>zabbix—第6篇. ”</p>
+</blockquote>
+
+<p>Web的应用监控，以tomcat为例，监控网站curl是否返回200的案例。</p>
+
+<h1 id="先要有tomcat">先要有tomcat</h1>
+<p>确保tomcat能正常访问</p>
+
+<h1 id="web检测">web检测</h1>
+<p>添加web场景
+<img src="/img/zabbix-监控web.png" alt="" /></p>
+
+<p>创建web场景及相关配置
+<img src="/img/zabbix-监控web.png" alt="" /></p>
+
+<p><img src="/img/zabbix-监控web的步骤配置.png" alt="" /></p>
+
+<h1 id="设置触发器">设置触发器</h1>
+<p>配置触发器
+<img src="/img/zabbix-监控web配置触发器.png" alt="" /></p>
+
+<p>{zabbix-agent-36:web.test.rspcode[tomcat web monitor,tomcat index].last()}&lt;&gt;200</p>
+
+<h1 id="配置图形">配置图形</h1>
+<p><img src="/img/zabbix-监控web配置图形.png" alt="" /></p>
+
+<h1 id="查看数据">查看数据</h1>
+<p><img src="/img/zabbix-监控web查看数据.png" alt="" /></p>
+:ET

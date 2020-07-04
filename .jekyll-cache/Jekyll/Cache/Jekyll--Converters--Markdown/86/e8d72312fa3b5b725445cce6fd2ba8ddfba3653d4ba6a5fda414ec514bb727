@@ -1,0 +1,105 @@
+I"#<blockquote>
+  <p>zabbix—第5篇. ”</p>
+</blockquote>
+
+<p>mysql的监控zabbi有自带的模板，但不能直接使用。</p>
+
+<p>监控mysql的哪些东西？</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MySQL begin operations per second	    MySQL每秒开始运算
+MySQL bytes received per second	        每秒接收的MySQL字节数
+MySQL bytes sent per second	            每秒发送的MySQL字节数
+MySQL commit operations per second	    每秒MySQL提交操作
+MySQL delete operations per second	    MySQL每秒删除操作数
+MySQL insert operations per second	    MySQL每秒插入操作数
+MySQL queries per second	            每秒MySQL查询
+MySQL rollback operations per second	每秒MySQL回滚操作
+MySQL select operations per second	MySQL每秒选择操作
+MySQL slow queries	                    MySQL慢查询
+MySQL status	M                       ySQL状态
+MySQL update operations per second	每秒MySQL更新操作
+MySQL uptime	                        MySQL正常运行时间
+MySQL version	                        MySQL版本
+</code></pre></div></div>
+
+<h1 id="重新配置mysql的配置文件">重新配置mysql的配置文件</h1>
+<p>原来的文件：/etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf</p>
+
+<p>拷贝一份到另外的目录下：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>创建：mkdir -p /opt/zabbix/etc/zabbix_agentd.conf.d/
+
+cp /etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf  /opt/zabbix/etc/zabbix_agentd.conf.d/
+</code></pre></div></div>
+
+<h1 id="设置关联mysql的配置文件">设置关联mysql的配置文件</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /opt/zabbix/etc/.my.cnf
+
+[mysql]
+host=192.168.11.36
+user=localhost
+password=
+socket=/var/lib/mysql/mysql.sock
+[mysqladmin]
+host=192.168.11.36
+user=localhost
+password=
+socket=/var/lib/mysql/mysql.sock
+
+host：写你的数据库IP
+user：我这里写的是localhost，你也可以使用其他的（后面授权数据库，不然zabbix_get不到数据）
+password：空可以不写，有就填上
+# mysql.sock文件通过find / -name mysql.sock找出路径
+</code></pre></div></div>
+
+<h1 id="授权数据库">授权数据库</h1>
+<p>先登录到自己的数据库中：mysql -u root -p</p>
+
+<p>授权并刷新下即可。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql&gt; grant all privileges on localhost.* to root@localhost identified by "YOURPASSWORD";
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+</code></pre></div></div>
+
+<p>使用localhost登录数据库看能不能登录上：mysql -u localhost -p</p>
+
+<h1 id="修改userparameter_mysqlconf配置文件">修改userparameter_mysql.conf配置文件</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s@/var/lib/zabbix@/opt/zabbix/etc@g，将/var/lig/zabbix的路径修改为/opt/zabbix/etc
+</code></pre></div></div>
+
+<h1 id="添加zabbix_agentdconf文件的include">添加zabbix_agentd.conf文件的include</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>修改vim /etc/zabbix/zabbix_agentd.conf文件添加：Include=/opt/zabbix/etc/zabbix_agentd.conf.d/
+</code></pre></div></div>
+
+<h1 id="重启zabbix-agent">重启zabbix-agent</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl restart zabbix-agent
+</code></pre></div></div>
+
+<h1 id="在server端测试">在server端测试</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[root@zabbix-server ~]# zabbix_get -s 192.168.11.36 -p 10050 -k mysql.ping
+1
+
+[root@zabbix-server ~]# zabbix_get -s 192.168.11.36 -p 10050 -k mysql.version
+mysql  Ver 14.14 Distrib 5.6.48, for Linux (x86_64) using  EditLine wrapper
+
+[root@zabbix-server ~]# zabbix_get -s 192.168.11.36 -p 10050 -k mysql.status[Com_select]
+500
+
+参数：[Com_begin]，[Com_delete]，[Bytes_received]，[Bytes_sent]，[Com_commit]，[Com_insert]，[Questions]，[Com_rollback]，[Com_rollback]
+</code></pre></div></div>
+
+<h1 id="配置web页面">配置web页面</h1>
+
+<p>添加模板：
+<img src="/img/zabbix-mysql模板添加.png" alt="" /></p>
+
+<p>查看数据：
+<img src="/img/zabbix-mysql查看数据.png" alt="" /></p>
+
+<h1 id="触发器">触发器</h1>
+<p>数据库的触发器如何配置？</p>
+:ET

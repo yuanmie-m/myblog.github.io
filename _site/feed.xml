@@ -5,9 +5,169 @@
     <description>疯狂的学习.</description>
     <link>http://192.168.11.32:4000/</link>
     <atom:link href="http://192.168.11.32:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 30 Jun 2020 00:09:15 +0800</pubDate>
-    <lastBuildDate>Tue, 30 Jun 2020 00:09:15 +0800</lastBuildDate>
+    <pubDate>Sat, 04 Jul 2020 10:15:23 +0800</pubDate>
+    <lastBuildDate>Sat, 04 Jul 2020 10:15:23 +0800</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
+    
+      <item>
+        <title>zabbix监控web</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;zabbix—第6篇. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Web的应用监控，以tomcat为例，监控网站curl是否返回200的案例。&lt;/p&gt;
+
+&lt;h1 id=&quot;先要有tomcat&quot;&gt;先要有tomcat&lt;/h1&gt;
+&lt;p&gt;确保tomcat能正常访问&lt;/p&gt;
+
+&lt;h1 id=&quot;web检测&quot;&gt;web检测&lt;/h1&gt;
+&lt;p&gt;添加web场景
+&lt;img src=&quot;/img/zabbix-监控web.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;创建web场景及相关配置
+&lt;img src=&quot;/img/zabbix-监控web.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/zabbix-监控web的步骤配置.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;设置触发器&quot;&gt;设置触发器&lt;/h1&gt;
+&lt;p&gt;配置触发器
+&lt;img src=&quot;/img/zabbix-监控web配置触发器.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;{zabbix-agent-36:web.test.rspcode[tomcat web monitor,tomcat index].last()}&amp;lt;&amp;gt;200&lt;/p&gt;
+
+&lt;h1 id=&quot;配置图形&quot;&gt;配置图形&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;/img/zabbix-监控web配置图形.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;查看数据&quot;&gt;查看数据&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;/img/zabbix-监控web查看数据.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 03 Jul 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/07/03/zabbix%E7%9B%91%E6%8E%A7web/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/07/03/zabbix%E7%9B%91%E6%8E%A7web/</guid>
+        
+        <category>zabbix</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>zabbix监控mysql</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;zabbix—第5篇. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;mysql的监控zabbi有自带的模板，但不能直接使用。&lt;/p&gt;
+
+&lt;p&gt;监控mysql的哪些东西？&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;MySQL begin operations per second	    MySQL每秒开始运算
+MySQL bytes received per second	            每秒接收的MySQL字节数
+MySQL bytes sent per second	            每秒发送的MySQL字节数
+MySQL commit operations per second	    每秒MySQL提交操作
+MySQL delete operations per second	    MySQL每秒删除操作数
+MySQL insert operations per second	    MySQL每秒插入操作数
+MySQL queries per second	            每秒MySQL查询
+MySQL rollback operations per second	    每秒MySQL回滚操作
+MySQL &lt;span class=&quot;k&quot;&gt;select &lt;/span&gt;operations per second          MySQL每秒选择操作
+MySQL slow queries	                    MySQL慢查询
+MySQL status	                            MySQL状态
+MySQL update operations per second	    每秒MySQL更新操作
+MySQL &lt;span class=&quot;nb&quot;&gt;uptime                            &lt;/span&gt;MySQL正常运行时间
+MySQL version	                            MySQL版本
+MySQL &lt;span class=&quot;nb&quot;&gt;uptime                            &lt;/span&gt;MySQL正常运行时间
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;重新配置mysql的配置文件&quot;&gt;重新配置mysql的配置文件&lt;/h1&gt;
+&lt;p&gt;原来的文件：/etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf&lt;/p&gt;
+
+&lt;p&gt;拷贝一份到另外的目录下：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;创建：mkdir -p /opt/zabbix/etc/zabbix_agentd.conf.d/
+
+cp /etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf  /opt/zabbix/etc/zabbix_agentd.conf.d/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;设置关联mysql的配置文件&quot;&gt;设置关联mysql的配置文件&lt;/h1&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim /opt/zabbix/etc/.my.cnf
+
+[mysql]
+host=192.168.11.36
+user=localhost
+password=
+socket=/var/lib/mysql/mysql.sock
+[mysqladmin]
+host=192.168.11.36
+user=localhost
+password=
+socket=/var/lib/mysql/mysql.sock
+
+host：写你的数据库IP
+user：我这里写的是localhost，你也可以使用其他的（后面授权数据库，不然zabbix_get不到数据）
+password：空可以不写，有就填上
+# mysql.sock文件通过find / -name mysql.sock找出路径
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;授权数据库&quot;&gt;授权数据库&lt;/h1&gt;
+&lt;p&gt;先登录到自己的数据库中：mysql -u root -p&lt;/p&gt;
+
+&lt;p&gt;授权并刷新下即可。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mysql&amp;gt; grant all privileges on localhost.* to root@localhost identified by &quot;YOURPASSWORD&quot;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&amp;gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;使用localhost登录数据库看能不能登录上：mysql -u localhost -p&lt;/p&gt;
+
+&lt;h1 id=&quot;修改userparameter_mysqlconf配置文件&quot;&gt;修改userparameter_mysql.conf配置文件&lt;/h1&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;s@/var/lib/zabbix@/opt/zabbix/etc@g，将/var/lig/zabbix的路径修改为/opt/zabbix/etc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;添加zabbix_agentdconf文件的include&quot;&gt;添加zabbix_agentd.conf文件的include&lt;/h1&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;修改vim /etc/zabbix/zabbix_agentd.conf文件添加：Include=/opt/zabbix/etc/zabbix_agentd.conf.d/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;重启zabbix-agent&quot;&gt;重启zabbix-agent&lt;/h1&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl restart zabbix-agent
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;在server端测试&quot;&gt;在server端测试&lt;/h1&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@zabbix-server ~]# zabbix_get -s 192.168.11.36 -p 10050 -k mysql.ping
+1
+
+[root@zabbix-server ~]# zabbix_get -s 192.168.11.36 -p 10050 -k mysql.version
+mysql  Ver 14.14 Distrib 5.6.48, for Linux (x86_64) using  EditLine wrapper
+
+[root@zabbix-server ~]# zabbix_get -s 192.168.11.36 -p 10050 -k mysql.status[Com_select]
+500
+
+参数：[Com_begin]，[Com_delete]，[Bytes_received]，[Bytes_sent]，[Com_commit]，[Com_insert]，[Questions]，[Com_rollback]，[Com_rollback]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;配置web页面&quot;&gt;配置web页面&lt;/h1&gt;
+
+&lt;p&gt;添加模板：
+&lt;img src=&quot;/img/zabbix-mysql模板添加.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;查看数据：
+&lt;img src=&quot;/img/zabbix-mysql查看数据.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;触发器&quot;&gt;触发器&lt;/h1&gt;
+&lt;p&gt;数据库的触发器如何配置？&lt;/p&gt;
+</description>
+        <pubDate>Fri, 03 Jul 2020 00:00:00 +0800</pubDate>
+        <link>http://192.168.11.32:4000/linux/2020/07/03/zabbix%E7%9B%91%E6%8E%A7mysql/</link>
+        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/07/03/zabbix%E7%9B%91%E6%8E%A7mysql/</guid>
+        
+        <category>zabbix</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
     
       <item>
         <title>zabbix监控TCP11种状态</title>
@@ -728,88 +888,6 @@ linux上常用工具：iostat -x，sar
         <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/mysql%E9%AB%98%E5%8F%AF%E7%94%A8/</guid>
         
         <category>高可用</category>
-        
-        
-        <category>Linux</category>
-        
-      </item>
-    
-      <item>
-        <title>jenkins</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;jenkins—第1篇. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;jenkins&lt;/p&gt;
-
-&lt;h1 id=&quot;jenkins&quot;&gt;jenkins&lt;/h1&gt;
-
-</description>
-        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/linux/2020/06/27/jenkins/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/jenkins/</guid>
-        
-        <category>jenkins</category>
-        
-        
-        <category>Linux</category>
-        
-      </item>
-    
-      <item>
-        <title>docker入门</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“docker—第1篇. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;docker&quot;&gt;docker&lt;/h1&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;images&lt;/code&gt;    List images                                   # 列出系统当前镜像&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ps&lt;/code&gt;        List containers                               # 列出容器列表&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;info&lt;/code&gt;      Display system-wide information               # 显示系统相关信息&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;inspect&lt;/code&gt;   Return low-level information on a container   # 查看容器详细信息&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kill&lt;/code&gt;      Kill a running container                      # kill 指定 docker 容器&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;load&lt;/code&gt;      Load an image from a tar archive              # 从一个 tar 包中加载一个镜像[对应 save]&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save&lt;/code&gt;      Save an image to a tar archive                # 保存一个镜像为一个 tar 包[对应 load]&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;login&lt;/code&gt;     Register or Login to the docker registry server &lt;br /&gt;
-              # 注册或者登陆一个 docker 源服务器&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag&lt;/code&gt;       Tag an image into a repository                # 给源中镜像打标签&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pull&lt;/code&gt;      Pull an image or a repository from the docker registry server
-              # 从docker镜像源服务器拉取指定镜像或者库镜像&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;push&lt;/code&gt;      Push an image or a repository to the docker registry server
-              # 推送指定镜像或者库镜像至docker源服务器&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rm&lt;/code&gt;        Remove one or more containers                 # 移除一个或者多个容器&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rmi&lt;/code&gt;       Remove one or more images               &lt;br /&gt;
-              # 移除一个或多个镜像[无容器使用该镜像才可删除，否则需删除相关容器才可继续或 -f 强制删除]&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log&lt;/code&gt;       Fetch the logs of a container                 # 输出当前容器日志信息&lt;/p&gt;
-
-&lt;p&gt;例如：查看指定时间后的日志，只显示最后100行：
-docker logs -f -t –since=”2020-06-27” –tail=100 CONTAINER_ID&lt;/p&gt;
-
-&lt;p&gt;查看最近30分钟的日志：docker logs –since 30m CONTAINER_ID&lt;/p&gt;
-
-&lt;p&gt;查看某时间之后的日志：logs -t –since=”2020-06-27T13:23:37” CONTAINER_ID&lt;/p&gt;
-
-&lt;p&gt;查看某时间段日志：docker logs -t –since=”2020-06-26T13:23:37” –until “2020-06-27T12:23:37” CONTAINER_ID&lt;/p&gt;
-</description>
-        <pubDate>Sat, 27 Jun 2020 00:00:00 +0800</pubDate>
-        <link>http://192.168.11.32:4000/linux/2020/06/27/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
-        <guid isPermaLink="true">http://192.168.11.32:4000/linux/2020/06/27/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
-        
-        <category>docker</category>
         
         
         <category>Linux</category>
