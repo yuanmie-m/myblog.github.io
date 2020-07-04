@@ -29,9 +29,8 @@ MySQL select operations per second          MySQL每秒选择操作
 MySQL slow queries	                    MySQL慢查询
 MySQL status	                            MySQL状态
 MySQL update operations per second	    每秒MySQL更新操作
-MySQL uptime                            MySQL正常运行时间
 MySQL version	                            MySQL版本
-MySQL uptime                            MySQL正常运行时间
+MySQL uptime                                MySQL正常运行时间
 ```
 # 重新配置mysql的配置文件
 原来的文件：/etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf

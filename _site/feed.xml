@@ -5,8 +5,8 @@
     <description>疯狂的学习.</description>
     <link>http://192.168.11.32:4000/</link>
     <atom:link href="http://192.168.11.32:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 04 Jul 2020 10:15:23 +0800</pubDate>
-    <lastBuildDate>Sat, 04 Jul 2020 10:15:23 +0800</lastBuildDate>
+    <pubDate>Sat, 04 Jul 2020 10:20:31 +0800</pubDate>
+    <lastBuildDate>Sat, 04 Jul 2020 10:20:31 +0800</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
     
       <item>
@@ -73,9 +73,8 @@ MySQL &lt;span class=&quot;k&quot;&gt;select &lt;/span&gt;operations per second 
 MySQL slow queries	                    MySQL慢查询
 MySQL status	                            MySQL状态
 MySQL update operations per second	    每秒MySQL更新操作
-MySQL &lt;span class=&quot;nb&quot;&gt;uptime                            &lt;/span&gt;MySQL正常运行时间
 MySQL version	                            MySQL版本
-MySQL &lt;span class=&quot;nb&quot;&gt;uptime                            &lt;/span&gt;MySQL正常运行时间
+MySQL &lt;span class=&quot;nb&quot;&gt;uptime                                &lt;/span&gt;MySQL正常运行时间
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h1 id=&quot;重新配置mysql的配置文件&quot;&gt;重新配置mysql的配置文件&lt;/h1&gt;
 &lt;p&gt;原来的文件：/etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf&lt;/p&gt;
